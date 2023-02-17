@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "header": "4-AMINOPYRIDINE TOXICITY",
+        "description": "4-aminopyridine is a bird repellent; accidental exposure leads to toxicity. Death usually occurs within hours of ingestion.",
+        "species": "Porcine, Bovine, Canine, Equine, Feline, Caprine, Ovine",
+        "signs": "Abnormal behavior, aggression, changing habits, Agalactia, Anorexia, Ataxia, Dysmetria, Dyspnea, Excessive salivation, Excitement, Increased respiratory rate, Seizures or syncope, Sudden death, Sweating, Tachycardia, Tenesmus, Trembling, Tremor, Underweight, poor condition, thin, emaciated, unthriftiness, ill thrift, Weight loss"
+    },
+    {
+        "id": 3,
+        "header": "DYNAMIN 1-ASSSOCIATED EXERCISE-INDUCED COLLAPSE",
+        "description": "Otherwise-healthy young dogs can develop Exercise-Induced Collapse following 5-15 minutes of strenuous activity; after 10-20 minutes of rest the dogs return to normal. Not progressive and the animals do well if not strenuously exercised. The mutation causing this Dynamin 1 (DNM1)-Associated Exercise-Induced Collapse is common in Labrador retrievers and has been found in Chesapeake Bay retrievers, Curly-coated retrievers, Boykin spaniels and Pembroke Welsh corgis.",
+        "species": "Canine",
+        "signs": "Abnormal hindlimb reflexes, Ataxia, Disoriented, Dullness, Dysmetria, Excessive salivation, Exercise intolerance, Fever, Generalized weakness, Inability to stand, Increased respiratory rate, Paraparesis, Seizures or syncope, Sudden death, Tachycardia, Tetraparesis"
+    },
+    {
+        "id": 7,
+        "header": "GASTROINTESTINAL PARASITISM, ABOMASUM, SMALL, LARGE INTESTINE",
+        "description": "Clinical signs due to parasitism are often worse in young or malnourished animals. HAEMONCHUS, OSTERTAGIA, TELADORSAGIA, and TRICHOSTRONGYLUS inhabit the abomasum; HAEMONCHUS is of particular importance in sheep and goats. TRICHOSTRONGYLUS, NEMATODIRUS, COOPERIA, STRONGYLOIDES, and BUNOSTOMUM are parasites of the ruminant small intestine. OESOPHAGOSTOMUM, CHABERTIA and TRICHURIS are found in the ruminant large intestine. TOXOCARA VITULORUM is common in young calves in tropical and subtropical regions. The tapeworms THYSANOSOMA and MONEZIA do not cause signs but tapeworm segments can be passed. Sudden death in calves and lambs was associated with STRONGYLOIDES infection; some affected calves had precocious udder enlargement.",
+        "species": "Bovine, Caprine, Ovine",
+        "signs": "Agalactia, Anorexia, Bloody stools, feces, hematochezia, Constant or increased vocalization, Dehydration, Diarrhea, Dullness, Dyspnea, Exercise intolerance, Female infertility, Generalized weakness, Head, face, ears, jaw, nose, nasal, swelling, Inability to stand, Increased respiratory rate, Lack of growth or weight gain, Mammary gland swelling, Melena or occult blood in feces, stools, Mucous, mucoid stools, feces, Pale, Parasites passed per rectum, in stools, feces, Rough hair coat, Seizures or syncope, Skin edema, Sudden death, Tachycardia, Tenesmus, Underweight, Weight loss"
+    }
+]
