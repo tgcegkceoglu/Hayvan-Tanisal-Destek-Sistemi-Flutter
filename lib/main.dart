@@ -1,7 +1,5 @@
 import 'package:consultant/cubit/DiagnosisCubit.dart';
 import 'package:consultant/searchDiagnosis.dart';
-import 'package:consultant/diagnosisDetail.dart';
-import 'package:consultant/searchDiagnosisList.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

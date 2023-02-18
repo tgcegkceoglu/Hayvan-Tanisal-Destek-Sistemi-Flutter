@@ -6,7 +6,7 @@ class DiagosisDaoRepository{
 
   List<Cons> consList=[];
   List<Cons> allSpecies = [];
-  final String localJsonPath = 'assets/json/veri.json';
+  final String localJsonPath = 'assets/json/veriler.json';
 
   Future<List<Cons>> loadLocalJson() async {
     consList=[];
@@ -20,10 +20,10 @@ class DiagosisDaoRepository{
    allSpecies=[];
    await loadLocalJson();
    for(int i=0; i<consList.length; i++){
-    List specie= consList[i].species.toLowerCase().split(",");
+    List specie= consList[i].species.toLowerCase().split(", ");
     List header=consList[i].header.toLowerCase().split(" ");
     List description=consList[i].description.toLowerCase().split(" ");
-    List signs=consList[i].signs.toLowerCase().split(" ");
+    // List signs=consList[i].signs.toLowerCase().split(" ");
       if(species!="All"){
         species=species.toLowerCase();
         for(int j=0; j<specie.length; j++){
@@ -34,7 +34,7 @@ class DiagosisDaoRepository{
                   List search=[];
                   if(m==1){search=header;}
                   else if(m==2){search=description;}
-                  else{search=signs;}
+                  // else{search=signs;}
 
                   for(int k=0; k<search.length; k++){
                     if(search[k].trim()==diagnosisKeyword){
@@ -57,7 +57,7 @@ class DiagosisDaoRepository{
             List search=[];
             if(m==1){search=header;}
             else if(m==2){search=description;}
-            else{search=signs;}
+            // else{search=signs;}
 
             for(int k=0; k<search.length; k++){
               if(search[k].trim()==diagnosisKeyword){
@@ -75,8 +75,9 @@ class DiagosisDaoRepository{
    }
     return allSpecies;
   }
-
-  List<Cons> searchDiagnosisKeyword(String searchKeyword){
+  
+  
+  Future<List<Cons>> searchDiagnosisKeyword(String searchKeyword) async{
    List<Cons> cons=[];
    searchKeyword = searchKeyword.toLowerCase().trim();
    int lenght = searchKeyword.length;
