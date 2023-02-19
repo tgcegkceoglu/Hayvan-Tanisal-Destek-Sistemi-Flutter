@@ -21,7 +21,7 @@ class SearchDiagnosisList extends StatefulWidget {
 class _SearchDiagnosisListState extends State<SearchDiagnosisList> {
 
   late CancelableOperation<void> cancellableOperation;
-  final _delayTime = Duration(milliseconds: 400);
+  final _delayTime = Duration(milliseconds: 700);
   TextEditingController controller =TextEditingController();
 
   List searchList=[];
@@ -71,7 +71,7 @@ class _SearchDiagnosisListState extends State<SearchDiagnosisList> {
           padding: EdgeInsets.symmetric(horizontal: 10),
           onPressed: (){
             Navigator.pushNamed(context, "/searchDiagnosis");
-          }, icon:Icon(Icons.arrow_back_ios,size: 20,color:Color(0xFF21774A),)),
+          }, icon:Icon(Icons.arrow_back_ios,size: 20)),
         backgroundColor: Colors.transparent,
         elevation: 0,
         ),
@@ -83,8 +83,6 @@ class _SearchDiagnosisListState extends State<SearchDiagnosisList> {
               Text("ARAMA SONUÇLARI",style: Theme.of(context).textTheme.labelLarge),
               SizedBox(height: 20,),
               TextFieldWidget(
-                onkey: true,
-                onChangedbool: true,
                 onChanged: _onItemChanged,
                 controller: controller, 
                 hinttext: "Arama Yap", icon:SvgPicture.asset('assets/images/search.svg')),
