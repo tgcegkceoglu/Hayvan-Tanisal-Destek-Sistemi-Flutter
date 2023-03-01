@@ -34,6 +34,7 @@ dependencies:
   flutter_svg: ^1.1.6
   dropdown_button2: ^1.9.2
   flutter_bloc: ^8.1.1
+  turkish: ^0.2.1
 
 
   # The following adds the Cupertino Icons font to your application.

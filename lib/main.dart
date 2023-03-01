@@ -1,6 +1,9 @@
 import 'package:consultant/cubit/DiagnosisCubit.dart';
+import 'package:consultant/cubit/systemCubit.dart';
+import 'package:consultant/systemSearch/systemSearch.dart';
 import 'package:consultant/homepage.dart';
-import 'package:consultant/searchDiagnosis.dart';
+import 'package:consultant/diagnosisSearch/searchDiagnosis.dart';
+import 'package:consultant/systemSearch/searchSignSearch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,19 +19,23 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => DiagnosisCubit()),
+        BlocProvider(create: (context) => SystemCubit()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           textTheme: TextTheme(
-          labelLarge: TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF21774A)),
+          labelLarge: TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF012340)),
+          labelMedium:TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+          labelSmall: TextStyle(color: Colors.white,fontSize: 12),
           headlineLarge: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Color(0xFFF1F7E0))
           ),
         ),
         initialRoute: '/',
         routes: {
-          '/': (context) => const HomePage(),
+          '/': (context) => HomePage(),
           '/searchDiagnosis': (context) => const SearchDiagnosis(),
+          '/searchSign': (context) => const SearchSignSearch(),
         },
       ),
     );

@@ -19,13 +19,13 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
     return Column(
       children: [
         Container(
-          height: 40,
+          height: 45,
           padding: widget.icon ==null ?  EdgeInsets.symmetric(horizontal: 16,) : EdgeInsets.only(left: 16, top: 5, bottom: 5),
           decoration: BoxDecoration(
-            color: Color(0xFFF1F7E0),
+            color: Color(0xFFF5F5F5),
             border: Border.all(
-              width: 2,
-              color: Color(0xFF21774A),
+              width: 1,
+              color:Color(0xFF012340).withOpacity(.6),
             ),
             borderRadius: BorderRadius.circular(10),
             boxShadow: [
@@ -40,9 +40,9 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
           child: TextField(
             controller: widget.controller,
             keyboardType: TextInputType.text,
-            cursorColor: Color(0xFF21774A),
+            cursorColor: Color(0xFF023059),
             style: TextStyle(
-              color: Colors.black,
+              color: Color(0xFF023059),
             ),
             onChanged: widget.onChanged,
             decoration: InputDecoration(
@@ -51,7 +51,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
               border: InputBorder.none,
               suffixIcon: widget.icon !=null ? widget.icon : null,
               hintText: widget.hinttext !=null ? widget.hinttext : null,
-              hintStyle: TextStyle(color: Color(0xFF21774A),),
+              hintStyle: TextStyle(color: Color(0xFF023059),),
               focusedBorder: InputBorder.none,
               enabledBorder: InputBorder.none,
               errorBorder: InputBorder.none,

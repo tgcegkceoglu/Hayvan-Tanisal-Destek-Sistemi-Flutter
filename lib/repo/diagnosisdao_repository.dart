@@ -5,20 +5,78 @@ import 'package:flutter/services.dart';
 class DiagosisDaoRepository{
 
   List<Cons> consList=[];
+  List<String> signList=[];
   List<Cons> allSpecies = [];
-  final String localJsonPath = 'assets/json/veriler.json';
+  final String localJsonPathDiagnosis = 'assets/json/veriler.json';
 
-  Future<List<Cons>> loadLocalJson() async {
+  Future<List<Cons>> loadLocalJsonDiagnosis() async {
     consList=[];
-    var consData = await rootBundle.loadString(localJsonPath);
+    var consData = await rootBundle.loadString(localJsonPathDiagnosis);
     List<dynamic> decodedJson = json.decode(consData);
     consList = decodedJson.map((e) => Cons.fromJson(e)).toList();
     return consList;
   }
 
+  Future<List<Cons>> systemSearch(String species, String signKeywords, List signs) async{
+   allSpecies=[];
+   if(consList.isEmpty){
+       await loadLocalJsonDiagnosis();
+   }
+   for(int i=0; i<consList.length; i++){
+    List specie= consList[i].species.toLowerCase().split(", ");
+    if(species!="All"){
+      species=species.toLowerCase();
+      for(int j=0; j<specie.length; j++){
+        if(specie[j].trim()==species){
+          for (var k = 0; k < signs.length; k++) {
+              if(consList[i].signs.contains(signs[k])){
+                if(!allSpecies.contains(consList[i])){
+                allSpecies.add(consList[i]);
+                }
+              }
+          }
+           if(signKeywords.length !=0){
+            if(consList[i].signs.toLowerCase().contains(signKeywords)){
+              if(!allSpecies.contains(consList[i])){
+                allSpecies.add(consList[i]);
+              }
+            }
+          }
+        }
+      }
+    }
+    else{
+      for (var k = 0; k < signs.length; k++) {
+        if(consList[i].signs.contains(signs[k])){
+          if(!allSpecies.contains(consList[i])){
+            allSpecies.add(consList[i]);
+          }
+        }
+      }
+
+      if(signKeywords.length !=0){
+        if(consList[i].signs.toLowerCase().contains(signKeywords)){
+          if(!allSpecies.contains(consList[i])){
+            allSpecies.add(consList[i]);
+          }
+        }
+      }
+
+      if(signKeywords.length ==0 && signs.length==0){
+         if(!allSpecies.contains(consList[i])){
+            allSpecies.add(consList[i]);
+          }
+      }
+    }
+   }
+    return allSpecies;
+  }
+ 
   Future<List<Cons>> diagnosisSearch(String species, String diagnosisKeyword) async{
    allSpecies=[];
-   await loadLocalJson();
+   if(consList.isEmpty){
+       await loadLocalJsonDiagnosis();
+   }
    for(int i=0; i<consList.length; i++){
     List specie= consList[i].species.toLowerCase().split(", ");
     List header=consList[i].header.toLowerCase().split(" ");
@@ -35,10 +93,9 @@ class DiagosisDaoRepository{
                   if(m==1){search=header;}
                   else if(m==2){search=description;}
                   // else{search=signs;}
-
                   for(int k=0; k<search.length; k++){
                     if(search[k].trim()==diagnosisKeyword){
-                      if(allSpecies.contains(consList[i])==false){
+                      if(!allSpecies.contains(consList[i])){
                             allSpecies.add(consList[i]);
                       }
                     }
@@ -75,8 +132,7 @@ class DiagosisDaoRepository{
    }
     return allSpecies;
   }
-  
-  
+
   Future<List<Cons>> searchDiagnosisKeyword(String searchKeyword) async{
    List<Cons> cons=[];
    searchKeyword = searchKeyword.toLowerCase().trim();

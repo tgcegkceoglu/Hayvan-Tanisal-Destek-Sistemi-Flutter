@@ -1,14 +1,12 @@
 import 'package:consultant/entity/veriler.dart';
-import 'package:consultant/searchDiagnosisList.dart';
-import 'package:consultant/widget/textfield/container.dart';
+import 'package:consultant/search/searchList.dart';
+import 'package:consultant/widget/searchContainer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class DiagnosisDetail extends StatefulWidget {
   Cons cons;
-  String dropDownValue;
-  String diagnosisKeyword;
-  DiagnosisDetail({required this.cons,required this.diagnosisKeyword, required this.dropDownValue});
+  DiagnosisDetail({required this.cons});
 
   @override
   State<DiagnosisDetail> createState() => _DiagnosisDetailState();
@@ -18,14 +16,14 @@ class _DiagnosisDetailState extends State<DiagnosisDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 246, 248, 238),
+      backgroundColor: Color(0XFFF5F5F5),
       appBar: AppBar(
         leadingWidth: 44,
         leading:IconButton(
           padding: EdgeInsets.symmetric(horizontal: 10),
           onPressed: (){
-             Navigator.push(context, MaterialPageRoute(builder: (context) => SearchDiagnosisList(species: widget.dropDownValue, diagnosisKeyword: widget.diagnosisKeyword,))); 
-          }, icon:Icon(Icons.arrow_back_ios,size: 20,color:Color(0xFF21774A),)),
+            Navigator.pop(context);
+          }, icon:Icon(Icons.arrow_back_ios,size: 20,color:Color(0xFF012340),)),
         backgroundColor: Colors.transparent,
         elevation: 0,
         ),

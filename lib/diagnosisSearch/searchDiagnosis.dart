@@ -1,5 +1,8 @@
-import 'package:consultant/searchDiagnosisList.dart';
-import 'package:consultant/widget/textfield/textfield.dart';
+import 'dart:ui';
+
+import 'package:consultant/search/searchList.dart';
+import 'package:consultant/widget/button.dart';
+import 'package:consultant/widget/textfield.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -17,15 +20,8 @@ class _SearchDiagnosisState extends State<SearchDiagnosis> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 246, 248, 238),
-      // appBar: AppBar(
-      //   leadingWidth: 44,
-      //   leading:IconButton(
-      //     padding: EdgeInsets.symmetric(horizontal: 10),
-      //     onPressed: (){}, icon:Icon(Icons.arrow_back_ios,size: 20,color:Color(0xFF21774A),)),
-      //   backgroundColor: Colors.transparent,
-      //   elevation: 0,
-      //   ),
+      bottomNavigationBar: Image.asset('assets/images/animal2.png'),
+      backgroundColor: Color(0XFFF5F5F5),
       body: Padding(
         padding: const EdgeInsets.only(top: 80,left: 10,right: 10),
         child: CustomScrollView(
@@ -35,17 +31,17 @@ class _SearchDiagnosisState extends State<SearchDiagnosis> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("TANIYA GÖRE ARAMA",style: Theme.of(context).textTheme.labelLarge),
+                  Text("SEARCH BY DIAGNOSIS",style: Theme.of(context).textTheme.labelLarge),
                   SizedBox(height: 30,),
-                  Text("Tür",style: Theme.of(context).textTheme.labelLarge),
+                  Text("Species",style: Theme.of(context).textTheme.labelLarge),
                   SizedBox(height: 8,),
                   Container(
-                    height: 40,
+                    height: 45,
                     decoration: BoxDecoration(
-                      color: Color(0xFFF1F7E0),
+                      color: Color(0xFFF5F5F5),
                       border: Border.all(
-                        width: 2,
-                        color: Color(0xFF21774A),
+                        width: 1,
+                        color:Color(0xFF012340).withOpacity(.6),
                       ),
                       borderRadius: BorderRadius.circular(10),
                       boxShadow: [
@@ -84,36 +80,13 @@ class _SearchDiagnosisState extends State<SearchDiagnosis> {
                     ),
                   ),
                   SizedBox(height: 16,),
-                  Text("Anahtar Kelime",style: Theme.of(context).textTheme.labelLarge),
+                  Text("Diagnosis Keyword",style: Theme.of(context).textTheme.labelLarge),
                   SizedBox(height: 8,),
                   TextFieldWidget(controller: diagnosisKeyword,),
                   SizedBox(height: 30,),
-                  Align(
-                    alignment: Alignment.center,
-                    child: GestureDetector(
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => SearchDiagnosisList(species: dropdownValue, diagnosisKeyword: diagnosisKeyword.text,))); 
-                      },
-                      child: Container(
-                        height: 40,
-                        padding: EdgeInsets.symmetric(vertical:8),
-                        width:MediaQuery.of(context).size.width/2,
-                        decoration: BoxDecoration(
-                          color:  Color(0xFF21774A),
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.shade300,
-                              spreadRadius:3,
-                              blurRadius: 3,
-                              offset: Offset(0, 3),
-                            ),
-                          ],
-                      ),child: Center(child: Text("ARAMA YAP",style:Theme.of(context).textTheme.headlineLarge))),
-                    ),
-                  ),
-                  Spacer(),
-                  Image.asset("assets/images/animal1.png")
+                  ButtonWidget(onChanged:(){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => SearchList(id: 1 ,species: dropdownValue, diagnosisKeyword: diagnosisKeyword.text,))); 
+                  },),
                   ],
               ),
             ),
