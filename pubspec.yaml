@@ -34,7 +34,6 @@ dependencies:
   flutter_svg: ^1.1.6
   dropdown_button2: ^1.9.2
   flutter_bloc: ^8.1.1
-  turkish: ^0.2.1
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -44,13 +43,14 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_lints: ^2.0.0
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^2.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

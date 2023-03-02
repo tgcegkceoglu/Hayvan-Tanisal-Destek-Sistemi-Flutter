@@ -1,6 +1,5 @@
 import 'package:consultant/cubit/DiagnosisCubit.dart';
 import 'package:consultant/cubit/systemCubit.dart';
-import 'package:consultant/systemSearch/systemSearch.dart';
 import 'package:consultant/homepage.dart';
 import 'package:consultant/diagnosisSearch/searchDiagnosis.dart';
 import 'package:consultant/systemSearch/searchSignSearch.dart';
@@ -10,7 +9,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 void main() {
   runApp(const MyApp());
 }
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
