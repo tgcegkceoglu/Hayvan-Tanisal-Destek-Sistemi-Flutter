@@ -18,7 +18,7 @@ class DiagosisDaoRepository {
   }
 
   int index=0;
-  Future<List<Cons>> systemSearch(String species, String signKeywords, List signs) async {
+  Future<List<Cons>> systemSearch(String species, List signs) async {
     allSpecies = [];
     
     if (consList.isEmpty) {
@@ -27,24 +27,14 @@ class DiagosisDaoRepository {
     for (int i = 0; i < consList.length; i++) {
       List specie = consList[i].species.toLowerCase().split(", ");
       if (species != "All") {
-        species = species.toLowerCase();
-        for (int j = 0; j < specie.length; j++) {
-          if (specie[j].trim() == species) {
-            for (var k = 0; k < signs.length; k++) {
-              if (consList[i].signs.contains(signs[k])) {
-                if (!allSpecies.contains(consList[i])) {
-                  allSpecies.add(consList[i]);
-                }
-              }
-            }
-            if (signKeywords.length != 0) {
-              if (consList[i].signs.toLowerCase().contains(signKeywords)) {
-                if (!allSpecies.contains(consList[i])) {
-                  allSpecies.add(consList[i]);
-                }
-              }
+        if(consList[i].species.toLowerCase().contains(species.toLowerCase())){
+          if(signs.length !=0){
+          if(consList[i].signs.contains(signs[0])){
+            if(!allSpecies.contains(consList[i])){
+                allSpecies.add(consList[i]);
             }
           }
+        }
         }
       } else {
         if(signs.length !=0){
@@ -78,7 +68,6 @@ class DiagosisDaoRepository {
       if(species != "All"){
         if(consList[i].species.contains(species)){
           if(diagnosisKeyword.isNotEmpty){
-            print("object");
              if(consList[i].description.toLowerCase().contains(diagnosisKeyword.toLowerCase()) && consList[i].signs.toLowerCase().contains(diagnosisKeyword.toLowerCase()) && consList[i].header.toLowerCase().contains(diagnosisKeyword.toLowerCase())){
                 if(!allSpecies.contains(consList[i])){
                   allSpecies.add(consList[i]);

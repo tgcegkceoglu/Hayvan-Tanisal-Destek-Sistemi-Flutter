@@ -33,7 +33,7 @@ class _SearchListState extends State<SearchList> {
   void initState() {
     super.initState();
     searchList=[];
-    widget.id == 1 ? context.read<DiagnosisCubit>().consSearch(widget.species!, widget.diagnosisKeyword!) : context.read<DiagnosisCubit>().signSearch(widget.species!, widget.signKeyword!, widget.signs!);
+    widget.id == 1 ? context.read<DiagnosisCubit>().consSearch(widget.species!, widget.diagnosisKeyword!) : context.read<DiagnosisCubit>().signSearch(widget.species!,widget.signs!);
     _start();
   }
   

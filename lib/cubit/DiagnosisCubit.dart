@@ -18,8 +18,8 @@ class DiagnosisCubit extends Cubit<List<Cons>>{
     emit(liste);
   }
 
-  Future<void>signSearch(String species, String signKeyword,List signs) async {
-    var liste= await krepo.systemSearch(species, signKeyword, signs);
+  Future<void>signSearch(String species,List signs) async {
+    var liste= await krepo.systemSearch(species, signs);
     emit(liste);
   }
 
