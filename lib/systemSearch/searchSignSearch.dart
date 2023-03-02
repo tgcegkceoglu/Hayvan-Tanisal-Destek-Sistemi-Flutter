@@ -29,6 +29,16 @@ class _SearchSignSearchState extends State<SearchSignSearch> {
     return Scaffold(
       bottomNavigationBar: Image.asset('assets/images/animal2.png'),
       backgroundColor: Color(0xFFF5F5F5),
+      appBar: AppBar(
+          leadingWidth: 44,
+          leading:IconButton(
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            onPressed: (){
+              Navigator.pop(context);
+            }, icon:Icon(Icons.arrow_back_ios,size: 20,color: Color(0xFF012340),)),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+      ),
       body: Padding(
         padding: const EdgeInsets.only(top: 80,left: 10,right: 10),
         child: CustomScrollView(
