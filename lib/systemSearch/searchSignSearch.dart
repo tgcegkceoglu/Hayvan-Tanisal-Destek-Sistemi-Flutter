@@ -156,11 +156,7 @@ class _SearchSignSearchState extends State<SearchSignSearch> {
                       )
                     ],
                   ),
-                  SizedBox(height: 8,),
-                  TextFieldWidget(controller: signKeyword,),
                   SizedBox(height: 20,),
-                  selectedSystemList.length !=0 ? Text("Selected Signs / Symptoms",style: Theme.of(context).textTheme.labelLarge) : Container(),
-                  SizedBox(height: 3,),
                   Container(
                     height: selectedSystemList.length <3 ? (selectedSystemList.length*70):150,
                     child: ListView.builder(

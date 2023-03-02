@@ -28,7 +28,6 @@ class _SearchListState extends State<SearchList> {
   TextEditingController controller =TextEditingController();
 
   List searchList=[];
-  bool searchZeroLength=false;
   
   @override
   void initState() {
@@ -48,17 +47,7 @@ class _SearchListState extends State<SearchList> {
     _cancellableOperation.cancel();
     _start();
     _cancellableOperation.value.whenComplete(() {
-      if(controller.text.length==0){
-        setState(() {
-           searchZeroLength=true;
-        });
-      }
-      else{
-        setState(() {
-          searchZeroLength=false;
-          context.read<DiagnosisCubit>().searchDiagnosisKeyword(controller.text);
-        });
-      }
+      context.read<DiagnosisCubit>().searchDiagnosisKeyword(controller.text);
     });
   }
 
@@ -99,7 +88,7 @@ class _SearchListState extends State<SearchList> {
                   icon:SvgPicture.asset('assets/images/search.svg')),
                   SizedBox(height: 20,),
                  Expanded(
-                  child: searchZeroLength == false ? BlocBuilder<DiagnosisCubit,List<Cons>>(
+                  child:BlocBuilder<DiagnosisCubit,List<Cons>>(
                   builder: ((context, consListesi) {
                     if(consListesi.isNotEmpty){
                       if(searchList.length==0){
@@ -132,28 +121,6 @@ class _SearchListState extends State<SearchList> {
                         child: Text("Herhangi Bir Sonuç Bulunamadı!"),
                       );
                     }
-                    }),
-                  )
-                  :
-                  ListView.builder(
-                    itemCount: searchList.length,
-                    itemBuilder: ((context, index) {
-                      var cons = searchList[index];
-                      return  GestureDetector(
-                        onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => DiagnosisDetail(cons: cons))); 
-                        },
-                        child: Column(
-                          children: [
-                            ContainerWidget(
-                              speciesText: cons.species,
-                              headerText: cons.header,
-                              descText: cons.description,
-                              signsText: cons.signs,
-                            )
-                          ],
-                        ),
-                      );
                     }),
                   )),
               ]

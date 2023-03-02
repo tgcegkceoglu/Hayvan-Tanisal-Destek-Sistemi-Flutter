@@ -31,15 +31,12 @@ class SystemRepository{
  Future<List<String>> searchSignTextfield(String signKeyword) async {
     _searchList=[];
     for (var i = 0; i < _systemList.length; i++) {
-      print(_systemList[i]);
-      print(signKeyword);
       if(_systemList[i].toLowerCase().contains(signKeyword.toLowerCase())){
         if(!_searchList.contains(_systemList[i])){
           _searchList.add(_systemList[i]);
         }
       }
     }
-    print(_searchList.length);
     return _searchList;
  }
 
