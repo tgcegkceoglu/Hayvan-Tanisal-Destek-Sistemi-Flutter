@@ -1,28 +1,46 @@
-
-import 'package:consultant/cubit/systemCubit.dart';
 import 'package:consultant/search/searchList.dart';
 import 'package:consultant/systemSearch/systemSearch.dart';
 import 'package:consultant/widget/button.dart';
-import 'package:consultant/widget/textfield.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
-class SearchSignSearch extends StatefulWidget {
- const SearchSignSearch({super.key});
+class SearchSignDiagnosis extends StatefulWidget {
+ bool trlang;
+ SearchSignDiagnosis({required this.trlang});
 
   @override
-  State<SearchSignSearch> createState() => _SearchSignSearchState();
+  State<SearchSignDiagnosis> createState() => _SearchSignDiagnosisState();
 }
 
-const List<String> systemList = <String>['All','Acoustic','Cardiovascular','Digestive','Ophthalmology','General','Musculoskeletal','Nervous','Pain/Discomfort','Respiratory','Skin/Integumentary','Reproductive','Urinary'];
-const List<String> signList = <String>['All','Avian','Canine','Feline','Bovine','Equine','Caprine','Ovine','Porcine'];
 TextEditingController signKeyword= TextEditingController();
-class _SearchSignSearchState extends State<SearchSignSearch> {
+class _SearchSignDiagnosisState extends State<SearchSignDiagnosis> {
+  late List<String> systemList;
+  late List<String> signList;
+  late String signValue;
+  late String systemValue;
   List selectedSystemList=[];
   var result;
-  String signValue = signList.first;
-  String systemValue = systemList.first;
+
+  @override
+  void initState() {
+    super.initState();
+    variableValues();
+  }
+
+  variableValues(){
+    if(widget.trlang){
+      systemList = ['Tüm','Akustik','Kardiyovasküler','Sindirim','Oftalmoloji','Genel','Kas-İskelet','Sinir','Ağrı/Rahatsızlık','Solunum','Deri/Dokular','Üreme','Üriner'];
+      signList = ["Tüm","Kuş","Köpek","Kedi","Sığır","At","Keçi","Koyun","Domuz"];
+      signValue = signList.first;
+      systemValue = systemList.first;
+    }
+    else{
+      systemList=['All','Acoustic','Cardiovascular','Digestive','Ophthalmology','General','Musculoskeletal','Nervous','Pain/Discomfort','Respiratory','Skin/Integumentary','Reproductive','Urinary'];
+      signList =['All','Avian','Canine','Feline','Bovine','Equine','Caprine','Ovine','Porcine'];
+      signValue = signList.first;
+      systemValue = systemList.first;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,9 +66,9 @@ class _SearchSignSearchState extends State<SearchSignSearch> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("SEARCH BY SIGNS / SYMPTOMS",style: Theme.of(context).textTheme.labelLarge),
+                  Text(widget.trlang  == true ? "Belirtilere/Semptomlara Göre Arama" : "SEARCH BY SIGNS / SYMPTOMS",style: Theme.of(context).textTheme.labelLarge),
                   SizedBox(height: 30,),
-                  Text("Species",style: Theme.of(context).textTheme.labelLarge),
+                  Text(widget.trlang  == true ? "Türler" : "Species",style: Theme.of(context).textTheme.labelLarge),
                   SizedBox(height: 8,),
                   Container(
                     height: 45,
@@ -97,7 +115,7 @@ class _SearchSignSearchState extends State<SearchSignSearch> {
                     ),
                   ),
                   SizedBox(height: 16,),
-                  Text("System",style: Theme.of(context).textTheme.labelLarge),
+                  Text(widget.trlang  == true ? "Sistem" : "System",style: Theme.of(context).textTheme.labelLarge),
                   SizedBox(height: 8,),
                   Container(
                     height: 45,
@@ -147,12 +165,12 @@ class _SearchSignSearchState extends State<SearchSignSearch> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Sign / Symptom Keyword",style: Theme.of(context).textTheme.labelLarge),
+                      Text(widget.trlang  == true ? "Belirti / Semptom Anahtar Kelime" :  "Sign / Symptom Keyword",style: Theme.of(context).textTheme.labelLarge),
                       GestureDetector(
                         onTap: () async{
                           result = await Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => SystemSearch(system: systemValue)),
+                            MaterialPageRoute(builder: (context) => SystemSearch(system: systemValue,trlang: widget.trlang,)),
                           );
                           setState(() {
                             if(result !=null && !selectedSystemList.contains(result))
@@ -193,8 +211,10 @@ class _SearchSignSearchState extends State<SearchSignSearch> {
                     },),
                   ),
                   SizedBox(height: 8,),
-                  ButtonWidget(onChanged:(){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => SearchList(id: 2,species: signValue, signs:selectedSystemList,signKeyword: signKeyword.text,))); 
+                  ButtonWidget(
+                  trlang: widget.trlang,
+                  onChanged:(){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => SearchList(id: 2,species: signValue, signs:selectedSystemList,trlang: widget.trlang,))); 
                   },),
                   ],
               ),

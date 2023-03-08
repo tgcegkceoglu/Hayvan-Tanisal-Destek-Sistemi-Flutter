@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class DiagnosisDetail extends StatefulWidget {
+  bool trlang;
   Cons cons;
-  DiagnosisDetail({required this.cons});
+  DiagnosisDetail({required this.cons,required this.trlang});
 
   @override
   State<DiagnosisDetail> createState() => _DiagnosisDetailState();
@@ -38,7 +39,7 @@ class _DiagnosisDetailState extends State<DiagnosisDetail> {
               children: [
                 SvgPicture.asset('assets/images/species.svg',height: 24, width: 24,fit: BoxFit.cover),
                 SizedBox(width: 5,),
-                Text("SPECIES",style: Theme.of(context).textTheme.labelLarge),
+                Text( widget.trlang == true ? "TÜRLER" : "SPECIES",style: Theme.of(context).textTheme.labelLarge),
               ],
             ),
             SizedBox(height: 8),
@@ -49,7 +50,7 @@ class _DiagnosisDetailState extends State<DiagnosisDetail> {
               children: [
                 SvgPicture.asset('assets/images/desc.svg',height: 20, width: 20,fit: BoxFit.cover),
                 SizedBox(width: 5,),
-                Text("DESCRIPTION",style: Theme.of(context).textTheme.labelLarge),
+                Text(widget.trlang == true ? "AÇIKLAMA" :"DESCRIPTION",style: Theme.of(context).textTheme.labelLarge),
               ],
             ),
             SizedBox(height: 8),
@@ -60,7 +61,7 @@ class _DiagnosisDetailState extends State<DiagnosisDetail> {
               children: [
                 SvgPicture.asset('assets/images/signs.svg',height: 20, width: 20,fit: BoxFit.cover),
                 SizedBox(width: 5,),
-                Text("SIGNS",style: Theme.of(context).textTheme.labelLarge),
+                Text(widget.trlang == true ? "BELİRTİLER" : "SIGNS",style: Theme.of(context).textTheme.labelLarge),
               ],
             ),
             SizedBox(height: 8),

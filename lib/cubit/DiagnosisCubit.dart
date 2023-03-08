@@ -7,19 +7,14 @@ class DiagnosisCubit extends Cubit<List<Cons>>{
   DiagnosisCubit() : super(<Cons>[]);
 
   var krepo=DiagosisDaoRepository();
-
-  Future<void>allCons() async {
-    var liste= await krepo.loadLocalJsonDiagnosis();
+  
+  Future<void>consSearch(String species, String diagnosisKeyword,bool trlang) async {
+    var liste= await krepo.diagnosisSearch(species, diagnosisKeyword, trlang);
     emit(liste);
   }
 
-  Future<void>consSearch(String species, String diagnosisKeyword) async {
-    var liste= await krepo.diagnosisSearch(species, diagnosisKeyword);
-    emit(liste);
-  }
-
-  Future<void>signSearch(String species,List signs) async {
-    var liste= await krepo.systemSearch(species, signs);
+  Future<void>signSearch(String species,List signs,bool trlang) async {
+    var liste= await krepo.systemSearch(species, signs,trlang);
     emit(liste);
   }
 

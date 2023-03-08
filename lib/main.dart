@@ -1,8 +1,6 @@
 import 'package:consultant/cubit/DiagnosisCubit.dart';
 import 'package:consultant/cubit/systemCubit.dart';
 import 'package:consultant/homepage.dart';
-import 'package:consultant/diagnosisSearch/searchDiagnosis.dart';
-import 'package:consultant/systemSearch/searchSignSearch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -29,12 +27,7 @@ class MyApp extends StatelessWidget {
           headlineLarge: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Color(0xFFF1F7E0))
           ),
         ),
-        initialRoute: '/',
-        routes: {
-          '/': (context) => HomePage(),
-          '/searchDiagnosis': (context) => const SearchDiagnosis(),
-          '/searchSign': (context) => const SearchSignSearch(),
-        },
+        home: HomePage(),
       ),
     );
   }

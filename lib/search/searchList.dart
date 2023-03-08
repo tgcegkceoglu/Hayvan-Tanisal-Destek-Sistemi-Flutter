@@ -11,11 +11,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SearchList extends StatefulWidget {
   int id;
+  bool trlang;
   String? species;
   String? diagnosisKeyword;
   String? signKeyword;
   List? signs;
-  SearchList({required this.id,this.species,this.diagnosisKeyword,this.signKeyword,this.signs});
+  SearchList({required this.id,this.species,this.diagnosisKeyword,this.signKeyword,this.signs,required this.trlang});
 
   @override
   State<SearchList> createState() => _SearchListState();
@@ -33,7 +34,7 @@ class _SearchListState extends State<SearchList> {
   void initState() {
     super.initState();
     searchList=[];
-    widget.id == 1 ? context.read<DiagnosisCubit>().consSearch(widget.species!, widget.diagnosisKeyword!) : context.read<DiagnosisCubit>().signSearch(widget.species!,widget.signs!);
+    widget.id == 1 ? context.read<DiagnosisCubit>().consSearch(widget.species!, widget.diagnosisKeyword!,widget.trlang) : context.read<DiagnosisCubit>().signSearch(widget.species!,widget.signs!,widget.trlang);
     _start();
   }
   
@@ -100,7 +101,7 @@ class _SearchListState extends State<SearchList> {
                           var cons = consListesi[index];
                           return  GestureDetector(
                             onTap: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => DiagnosisDetail(cons: cons))); 
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => DiagnosisDetail(cons: cons,trlang: widget.trlang,))); 
                             },
                             child: Column(
                               children: [

@@ -6,8 +6,8 @@ class SystemCubit extends Cubit<List<String>>{
 
   var krepo=SystemRepository();
 
-  Future<void>systemJsonRead(List systemNameList,String? system) async {
-    var liste= await krepo.readJsonSystem(systemNameList,system);
+  Future<void>systemJsonRead(List systemNameList,String? system,bool trlang) async {
+    var liste= await krepo.readJsonSystem(systemNameList,system,trlang);
     emit(liste);
   }
 

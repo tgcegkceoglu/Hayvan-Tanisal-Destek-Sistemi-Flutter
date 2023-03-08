@@ -1,17 +1,17 @@
 import 'dart:convert';
-
-import 'package:consultant/systemSearch/searchSignSearch.dart';
 import 'package:flutter/services.dart';
 
 class SystemRepository{
   List<String> _systemList=[];
-  final String localJsonPathSystem = 'assets/json/system.json';
+  final String localJsonPathSystemEng = 'assets/json/systemeng.json';
+  final String localJsonPathSystemTr = 'assets/json/systemtr.json';
 
-  Future<List<String>> readJsonSystem(List systemNameList,String? system) async {
+  Future<List<String>> readJsonSystem(List systemNameList,String? system,bool trlang) async {
   _systemList=[];
-  final String response = await rootBundle.loadString(localJsonPathSystem);
+  String systemValue= trlang == true ? "Tüm" : "All";
+  final String response = await rootBundle.loadString(trlang == true ? localJsonPathSystemTr : localJsonPathSystemEng);
   final data = await json.decode(response);
-  if(system == "All"){
+  if(system == systemValue){
     for (var i = 1; i < data.length; i++) {
       for (var j = 0; j < data[systemNameList[i]].length; j++) {
          _systemList.add(data[systemNameList[i]][j]);

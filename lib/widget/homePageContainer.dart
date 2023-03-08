@@ -3,28 +3,18 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class HomePageContainer extends StatelessWidget {
   String iconName;
+  String button;
   String header;
   String description;
-  String pushNamed;
-  HomePageContainer({super.key,required this.iconName, required this.header, required this.description, required this.pushNamed});
+  var page;
+  HomePageContainer({super.key,required this.iconName, required this.header, required this.description, required this.page,required this.button});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 18,vertical: 28),
       decoration: BoxDecoration(
-        gradient:LinearGradient(
-        colors: [Color(0xFF023059),Color(0xFF012340)],
-        begin: Alignment.topRight,
-        end: Alignment.bottomLeft,),
-        boxShadow: [
-              BoxShadow(
-              color: Color.fromARGB(255, 3, 56, 102),
-              spreadRadius: 0,
-              blurRadius: 1,
-              offset: Offset(0, 3), // changes position of shadow
-            ),
-          ],
+        color:Color(0xFF023059).withOpacity(.91),
         borderRadius: BorderRadius.circular(10)
       ),
       child:Column(
@@ -46,7 +36,10 @@ class HomePageContainer extends StatelessWidget {
           SizedBox(height: 25,),
           GestureDetector(
             onTap:(){
-              Navigator.pushNamed(context, pushNamed);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => page),
+              );
             },
             child: Container(
               width: MediaQuery.of(context).size.width,
@@ -55,7 +48,7 @@ class HomePageContainer extends StatelessWidget {
                 border: Border.all(width: 1,color: Colors.white),
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: Center(child: Text("Search",style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500),)),
+              child: Center(child: Text(button,style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500),)),
             ),
           ),
         ],

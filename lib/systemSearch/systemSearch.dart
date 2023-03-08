@@ -1,21 +1,20 @@
 import 'package:async/async.dart';
-import 'package:consultant/cubit/DiagnosisCubit.dart';
 import 'package:consultant/cubit/systemCubit.dart';
-import 'package:consultant/search/diagnosisDetail.dart';
-import 'package:consultant/widget/searchContainer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 
 class SystemSearch extends StatefulWidget {
   String system;
-  SystemSearch({super.key,required this.system});
+  bool trlang;
+  SystemSearch({super.key,required this.system,required this.trlang});
 
   @override
   State<SystemSearch> createState() => _SystemSearchState();
 }
 
-const List<String> list = <String>['All','Acoustic','Cardiovascular','Digestive','Ophthalmology','General','Musculoskeletal','Nervous','Pain/Discomfort','Respiratory','Skin/Integumentary','Reproductive','Urinary'];
+late List<String> list;
+
 TextEditingController controller=TextEditingController();
 
 class _SystemSearchState extends State<SystemSearch> {
@@ -27,9 +26,20 @@ class _SystemSearchState extends State<SystemSearch> {
     // TODO: implement initState
     super.initState();
     controller.text="";
-    context.read<SystemCubit>().systemJsonRead(list, widget.system);
+    variableValues();
+    context.read<SystemCubit>().systemJsonRead(list, widget.system,widget.trlang);
     _start();
   }
+
+  variableValues(){
+    if(widget.trlang){
+      list = ['Tüm','Akustik','Kardiyovasküler','Sindirim','Oftalmoloji','Genel','Kas-İskelet','Sinir','Ağrı/Rahatsızlık','Solunum','Deri/Dokular','Üreme','Üriner'];
+    }
+    else{
+      list=['All','Acoustic','Cardiovascular','Digestive','Ophthalmology','General','Musculoskeletal','Nervous','Pain/Discomfort','Respiratory','Skin/Integumentary','Reproductive','Urinary'];
+    }
+  }
+
 
    void _start() {
   cancellableOperation = CancelableOperation.fromFuture(
@@ -60,7 +70,7 @@ class _SystemSearchState extends State<SystemSearch> {
           onChanged: _onItemChanged,
           decoration: InputDecoration(
             border: InputBorder.none,
-            hintText: "Look for Signs/Symptoms...",
+            hintText: widget.trlang == true ? "Belirtileri/Semptomları Arayın..." : "Look for Signs/Symptoms...",
             hintStyle: TextStyle(color: Colors.white.withOpacity(0.5)),
           ),
         ),
@@ -92,7 +102,7 @@ class _SystemSearchState extends State<SystemSearch> {
               }
               else{
                 return Center(
-                  child: Text("Herhangi Bir Sonuç Bulunamadı!"),
+                  child: Text(widget.trlang == true ?  "Herhangi Bir Sonuç Bulunamadı!" : "No Results Found!"),
                 );
               }
               }))

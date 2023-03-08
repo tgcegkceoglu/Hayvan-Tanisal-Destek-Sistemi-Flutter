@@ -2,8 +2,9 @@
 import 'package:flutter/material.dart';
 
 class ButtonWidget extends StatefulWidget {
+  bool trlang;
   var onChanged;
-  ButtonWidget({super.key,required this.onChanged});
+  ButtonWidget({super.key,required this.onChanged,required this.trlang});
 
   @override
   State<ButtonWidget> createState() => _ButtonWidgetState();
@@ -37,7 +38,7 @@ class _ButtonWidgetState extends State<ButtonWidget> {
                   offset: Offset(0, 3),
                 ),
               ],
-          ),child: Center(child: Text("SEARCH",style:Theme.of(context).textTheme.headlineLarge))),
+          ),child: Center(child: Text(widget.trlang ==true ? "ARAMA YAP" : "SEARCH",style:Theme.of(context).textTheme.headlineLarge))),
         ),
       );
   }

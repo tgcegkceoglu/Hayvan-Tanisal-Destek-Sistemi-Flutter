@@ -1,22 +1,40 @@
-import 'dart:ui';
-
 import 'package:consultant/search/searchList.dart';
 import 'package:consultant/widget/button.dart';
 import 'package:consultant/widget/textfield.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class SearchDiagnosis extends StatefulWidget {
-  const SearchDiagnosis({super.key});
+  final bool trlang;
+  SearchDiagnosis({required this.trlang});
 
   @override
   State<SearchDiagnosis> createState() => _SearchDiagnosisState();
 }
-const List<String> list = <String>['All','Avian','Canine','Feline','Bovine','Equine','Caprine','Ovine','Porcine'];
+
 TextEditingController diagnosisKeyword= TextEditingController();
+late String dropdownValue;
+late List<String> list;
+
 class _SearchDiagnosisState extends State<SearchDiagnosis> {
-  String dropdownValue = list.first;
+
+  @override
+  void initState() {
+    super.initState();
+    variableValues();
+  }
+
+  variableValues(){
+    if(widget.trlang){
+      list = ["Tüm","Kuş","Köpek","Kedi","Sığır","At","Keçi","Koyun","Domuz"];
+      dropdownValue = list.first;
+    }
+    else{
+      list =['All','Avian','Canine','Feline','Bovine','Equine','Caprine','Ovine','Porcine'];
+      dropdownValue = list.first;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,8 +46,16 @@ class _SearchDiagnosisState extends State<SearchDiagnosis> {
             padding: EdgeInsets.symmetric(horizontal: 10),
             onPressed: (){
               Navigator.pop(context);
-            }, icon:Icon(Icons.arrow_back_ios,size: 20,color: Color(0xFF012340),)),
-          backgroundColor: Colors.transparent,
+            }, icon:Icon(Icons.arrow_back_ios,size: 20,color: Colors.white,)),
+          title: Text(widget.trlang == true ? "Tanısal Destek Sistemi" : "Diagnostic Support System",style:TextStyle(fontWeight: FontWeight.bold)),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 15),
+              child: Image.asset('assets/images/haytek.png',height: 35,width: 35,),
+            )
+          ],
+
+          backgroundColor:Color(0xFF012340),
           elevation: 0,
       ),
       body: Padding(
@@ -41,9 +67,9 @@ class _SearchDiagnosisState extends State<SearchDiagnosis> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("SEARCH BY DIAGNOSIS",style: Theme.of(context).textTheme.labelLarge),
+                  Text(widget.trlang == true ? "TANIYA GÖRE ARAMA" : "SEARCH BY DIAGNOSIS",style: Theme.of(context).textTheme.labelLarge),
                   SizedBox(height: 30,),
-                  Text("Species",style: Theme.of(context).textTheme.labelLarge),
+                  Text(widget.trlang == true ? "Tür" : "Species",style: Theme.of(context).textTheme.labelLarge),
                   SizedBox(height: 8,),
                   Container(
                     height: 45,
@@ -65,6 +91,7 @@ class _SearchDiagnosisState extends State<SearchDiagnosis> {
                     ),
                   child: DropdownButtonHideUnderline(
                   child: DropdownButton2(
+                    dropdownMaxHeight: MediaQuery.of(context).size.height/3,
                     buttonPadding: EdgeInsets.only(right: 10),
                     isExpanded: true,
                     items: list.map((item) => DropdownMenuItem<String>(value: item,child: Text(item,style: const TextStyle(fontSize: 14,color: Colors.black,),overflow: TextOverflow.ellipsis,))).toList(),
@@ -82,6 +109,7 @@ class _SearchDiagnosisState extends State<SearchDiagnosis> {
                     buttonElevation: 0,
                     dropdownDecoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(10)
                     ),
+                    itemHeight: 35,
                     buttonHeight: 45,
                     dropdownElevation: 0,
                     scrollbarThickness: 0,
@@ -90,13 +118,15 @@ class _SearchDiagnosisState extends State<SearchDiagnosis> {
                     ),
                   ),
                   SizedBox(height: 16,),
-                  Text("Diagnosis Keyword",style: Theme.of(context).textTheme.labelLarge),
+                  Text(widget.trlang == true ? " Tanı Anahtar Kelime" : "Diagnosis Keyword",style: Theme.of(context).textTheme.labelLarge),
                   SizedBox(height: 8,),
                   TextFieldWidget(controller: diagnosisKeyword,),
                   SizedBox(height: 30,),
-                  ButtonWidget(onChanged:(){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => SearchList(id: 1 ,species: dropdownValue, diagnosisKeyword: diagnosisKeyword.text,))); 
-                  },),
+                  ButtonWidget(
+                    trlang: widget.trlang,
+                    onChanged:(){
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => SearchList(id: 1 ,species: dropdownValue, diagnosisKeyword: diagnosisKeyword.text,trlang: widget.trlang,))); 
+                    },),
                   ],
               ),
             ),
