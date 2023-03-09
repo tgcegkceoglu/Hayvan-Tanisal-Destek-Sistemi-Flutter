@@ -1,3 +1,4 @@
+import 'package:consultant/about.dart';
 import 'package:consultant/cubit/DiagnosisCubit.dart';
 import 'package:consultant/cubit/systemCubit.dart';
 import 'package:consultant/homepage.dart';

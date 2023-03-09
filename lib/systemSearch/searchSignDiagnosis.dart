@@ -3,6 +3,7 @@ import 'package:consultant/systemSearch/systemSearch.dart';
 import 'package:consultant/widget/button.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SearchSignDiagnosis extends StatefulWidget {
  bool trlang;
@@ -45,7 +46,7 @@ class _SearchSignDiagnosisState extends State<SearchSignDiagnosis> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: Image.asset('assets/images/animal2.png'),
+      bottomNavigationBar: Image.asset('assets/images/animal.png'),
       backgroundColor: Color(0xFFF5F5F5),
       appBar: AppBar(
           leadingWidth: 44,
@@ -53,8 +54,21 @@ class _SearchSignDiagnosisState extends State<SearchSignDiagnosis> {
             padding: EdgeInsets.symmetric(horizontal: 10),
             onPressed: (){
               Navigator.pop(context);
-            }, icon:Icon(Icons.arrow_back_ios,size: 20,color: Color(0xFF012340),)),
-          backgroundColor: Colors.transparent,
+            }, icon:Icon(Icons.arrow_back_ios,size: 20,color: Colors.white,)),
+          title: Text(widget.trlang == true ? "Tanısal Destek Sistemi" : "Diagnostic Support System",style:TextStyle(fontWeight: FontWeight.bold)),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 15),
+              child: GestureDetector(
+                onTap:() async{
+                   if (await canLaunchUrl(Uri.parse("http://haytek.mehmetakif.edu.tr"))) {
+                      await launchUrl(Uri.parse("http://haytek.mehmetakif.edu.tr"));
+                    }
+                },
+                child: Image.asset('assets/images/haytek.png',)),
+            )
+          ],
+          backgroundColor:Color(0xFF012340),
           elevation: 0,
       ),
       body: Padding(

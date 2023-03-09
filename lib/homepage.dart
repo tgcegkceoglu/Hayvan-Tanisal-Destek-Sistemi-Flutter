@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:consultant/about.dart';
 import 'package:consultant/diagnosisSearch/searchDiagnosis.dart';
 import 'package:consultant/systemSearch/searchSignDiagnosis.dart';
 import 'package:consultant/widget/homePageContainer.dart';
@@ -19,7 +20,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: TextButton(child: Text(trlang==true ? "Hakkımda" : "About Me",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold)),onPressed: (){
-        
+        Navigator.push(context, MaterialPageRoute(builder: (context) => AboutMe(trlang: trlang,))); 
       },),
       backgroundColor: Color(0xFF012340),
       body: Padding(

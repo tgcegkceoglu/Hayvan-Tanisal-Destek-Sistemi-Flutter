@@ -3,6 +3,7 @@ import 'package:consultant/widget/button.dart';
 import 'package:consultant/widget/textfield.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SearchDiagnosis extends StatefulWidget {
   final bool trlang;
@@ -38,7 +39,7 @@ class _SearchDiagnosisState extends State<SearchDiagnosis> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: Image.asset('assets/images/animal2.png'),
+      bottomNavigationBar: Image.asset('assets/images/animal.png'),
       backgroundColor: Color(0XFFF5F5F5),
       appBar: AppBar(
           leadingWidth: 44,
@@ -51,7 +52,13 @@ class _SearchDiagnosisState extends State<SearchDiagnosis> {
           actions: [
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 15),
-              child: Image.asset('assets/images/haytek.png',height: 35,width: 35,),
+              child: GestureDetector(
+                onTap:() async{
+                   if (await canLaunchUrl(Uri.parse("http://haytek.mehmetakif.edu.tr"))) {
+                      await launchUrl(Uri.parse("http://haytek.mehmetakif.edu.tr"));
+                    }
+                },
+                child: Image.asset('assets/images/haytek.png',)),
             )
           ],
 
