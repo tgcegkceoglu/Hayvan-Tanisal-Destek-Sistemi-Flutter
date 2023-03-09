@@ -28,30 +28,50 @@ class DiagosisDaoRepository {
     for (int i = 0; i < consList.length; i++) {
       if (species != speciesValue) {
         if(consList[i].species.toLowerCase().contains(species.toLowerCase())){
-          if(signs.length !=0){
-          if(consList[i].signs.contains(signs[0])){
-            if(!allSpecies.contains(consList[i])){
+         if(signs.length !=0){
+           List split=signs[0].split(", ");
+           for(int k=0; k<split.length; k++){
+             if(consList[i].signs.contains(split[k])){
+              if(!allSpecies.contains(consList[i])){
                 allSpecies.add(consList[i]);
-            }
+              }
+             }
+           }
+        }
+        else{
+          if(!allSpecies.contains(consList[i])){
+            allSpecies.add(consList[i]);
           }
         }
         }
       } else {
         if(signs.length !=0){
-           if(consList[i].signs.contains(signs[0])){
+           List split=signs[0].split(", ");
+           for(int k=0; k<split.length; k++){
+             if(consList[i].signs.contains(split[k])){
               if(!allSpecies.contains(consList[i])){
-                  allSpecies.add(consList[i]);
+                allSpecies.add(consList[i]);
               }
+             }
            }
         }
         else{
-          allSpecies.add(consList[i]);
+          if(!allSpecies.contains(consList[i])){
+            allSpecies.add(consList[i]);
+          }
         }
       }
     }
     for (var i = 0; i < allSpecies.length; i++) {
+      int piece=0;
       for (var j = 1; j < signs.length; j++) {
-        if(!allSpecies[i].signs.contains(signs[j])){
+        List split=signs[j].split(", ");
+        for(int m=0;m<split.length; m++){
+          if(allSpecies[i].signs.contains(split[m])){
+            piece++;
+          }
+        }
+        if(piece==0){
           allSpecies.remove(allSpecies[i]);
           i--;
         }

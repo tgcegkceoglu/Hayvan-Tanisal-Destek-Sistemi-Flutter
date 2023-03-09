@@ -4,6 +4,8 @@ import 'package:consultant/widget/button.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher_platform_interface/url_launcher_platform_interface.dart';
+
 
 class SearchSignDiagnosis extends StatefulWidget {
  bool trlang;
@@ -13,6 +15,7 @@ class SearchSignDiagnosis extends StatefulWidget {
   State<SearchSignDiagnosis> createState() => _SearchSignDiagnosisState();
 }
 
+final UrlLauncherPlatform launcher = UrlLauncherPlatform.instance;
 TextEditingController signKeyword= TextEditingController();
 class _SearchSignDiagnosisState extends State<SearchSignDiagnosis> {
   late List<String> systemList;
@@ -60,12 +63,21 @@ class _SearchSignDiagnosisState extends State<SearchSignDiagnosis> {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 15),
               child: GestureDetector(
-                onTap:() async{
-                   if (await canLaunchUrl(Uri.parse("http://haytek.mehmetakif.edu.tr"))) {
-                      await launchUrl(Uri.parse("http://haytek.mehmetakif.edu.tr"));
-                    }
-                },
-                child: Image.asset('assets/images/haytek.png',)),
+              onTap:() async{
+                String url="http://haytek.mehmetakif.edu.tr";
+                if (!await launcher.launch(
+                  url,
+                  useSafariVC: false,
+                  useWebView: false,
+                  enableJavaScript: false,
+                  enableDomStorage: false,
+                  universalLinksOnly: false,
+                  headers: <String, String>{},
+                )) {
+                  throw Exception('Could not launch $url');
+                }
+              },
+              child: Image.asset('assets/images/haytek.png',)),
             )
           ],
           backgroundColor:Color(0xFF012340),

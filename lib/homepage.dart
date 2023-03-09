@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:consultant/about.dart';
 import 'package:consultant/diagnosisSearch/searchDiagnosis.dart';
 import 'package:consultant/systemSearch/searchSignDiagnosis.dart';
@@ -32,103 +30,106 @@ class _HomePageState extends State<HomePage> {
             fit: BoxFit.contain,
             opacity: .6
           )),
-          child: ListView(
-            children: [
-              Row(
-                children: [
-                  Expanded(
-                    child: Wrap(
-                      children: [
-                        Text(
-                          trlang == true ? "Tanısal Destek Sistemi" : "Diagnostic Support System",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w900,
-                            fontSize: 24,
-                            color: Colors.transparent,
-                            decoration: TextDecoration.underline,
-                            decorationThickness: 2,
-                            decorationColor: Colors.white,
-                            shadows: [
-                              Shadow(color: Colors.white, offset: Offset(0, -5))
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+          child: Center(
+            child: ListView(
+              shrinkWrap: true,
+              children: [
+                Row(
                   children: [
-                    GestureDetector(
-                      onTap: (() {
-                        setState(() {
-                          if(!trlang){
-                            trlang=true;
-                          }
-                        });
-                      }),
-                      child: Container(
-                        height: 25,
-                        padding: EdgeInsets.all(5),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(5),
-                            bottomLeft: Radius.circular(5),
+                    Expanded(
+                      child: Wrap(
+                        children: [
+                          Text(
+                            trlang == true ? "Tanısal Destek Sistemi" : "Diagnostic Support System",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w900,
+                              fontSize:trlang==true ? 24 : 22,
+                              color: Colors.transparent,
+                              decoration: TextDecoration.underline,
+                              decorationThickness: 2,
+                              decorationColor: Colors.white,
+                              shadows: [
+                                Shadow(color: Colors.white, offset: Offset(0, -5))
+                              ],
+                            ),
                           ),
-                          color:trlang==true ?  Colors.white : Color.fromARGB(255, 3, 56, 102) ,
-                          ),
-                        child: Text("TR",style: TextStyle(color:Color(0xFF012340)))),
+                        ],
+                      ),
                     ),
-                    GestureDetector(
-                      onTap: (() {
-                        setState(() {
-                          if(trlang){
-                            trlang=false;
-                          }
-                        });
-                      }),
-                      child: Container(
-                        height: 25,
-                        padding: EdgeInsets.all(5),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(5),
-                            bottomRight: Radius.circular(5),
-                          ),
-                          color:trlang== false ? Colors.white :Color.fromARGB(255, 3, 56, 102) 
-                          ),
-                        child: Text("EN",style: TextStyle(color:Color(0xFF012340)))),
+                    Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      GestureDetector(
+                        onTap: (() {
+                          setState(() {
+                            if(!trlang){
+                              trlang=true;
+                            }
+                          });
+                        }),
+                        child: Container(
+                          height: 25,
+                          padding: EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(5),
+                              bottomLeft: Radius.circular(5),
+                            ),
+                            color:trlang==true ?  Colors.white : Color.fromARGB(255, 3, 56, 102) ,
+                            ),
+                          child: Text("TR",style: TextStyle(color:Color(0xFF012340)))),
+                      ),
+                      GestureDetector(
+                        onTap: (() {
+                          setState(() {
+                            if(trlang){
+                              trlang=false;
+                            }
+                          });
+                        }),
+                        child: Container(
+                          height: 25,
+                          padding: EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(5),
+                              bottomRight: Radius.circular(5),
+                            ),
+                            color:trlang== false ? Colors.white :Color.fromARGB(255, 3, 56, 102) 
+                            ),
+                          child: Text("EN",style: TextStyle(color:Color(0xFF012340)))),
+                      ),
+                    ],
                     ),
                   ],
-                  ),
-                ],
-              ),
-              SizedBox(height:16,),
-              Column(
-                children: [
-                HomePageContainer(
-                button: trlang == true ? "Arama Yap" : "Search",
-                iconName: "diagnosis.svg",
-                header: trlang == true ? "Tanıya Göre Arama" : "Search By Diagnosis",
-                description: trlang == true ? "Hayvan türüne ve teşhis anahtar kelimesine göre arama yapmak için aşağıdaki butona tıklayınız." : "Click the button below to search by animal species and diagnosis keyword.",
-                page: SearchDiagnosis(trlang: trlang),),
-                SizedBox(
-                  height: 7,
                 ),
-                HomePageContainer(
-                button: trlang == true ? "Arama Yap" : "Search",
-                iconName: "signslist.svg",
-                header: trlang == true
-                    ? "Belirtilere/Semptomlara Göre Arama"
-                    : "Search By Signs/Symptoms",
-                description: trlang == true
-                    ? " Hayvan türüne ve belirtilere göre arama yapmak için aşağıdaki butona tıklayın."
-                    : "Click the button below to search by type and sign.",
-                page: SearchSignDiagnosis(trlang: trlang),),
-                ],
-              ),
-              
-            ],
+                SizedBox(height:16,),
+                Column(
+                  children: [
+                  HomePageContainer(
+                  button: trlang == true ? "Arama Yap" : "Search",
+                  iconName: "diagnosis.svg",
+                  header: trlang == true ? "Tanıya Göre Arama" : "Search By Diagnosis",
+                  description: trlang == true ? "Hayvan türüne ve teşhis anahtar kelimesine göre arama yapmak için aşağıdaki butona tıklayınız." : "Click the button below to search by animal species and diagnosis keyword.",
+                  page: SearchDiagnosis(trlang: trlang),),
+                  SizedBox(
+                    height: 7,
+                  ),
+                  HomePageContainer(
+                  button: trlang == true ? "Arama Yap" : "Search",
+                  iconName: "signslist.svg",
+                  header: trlang == true
+                      ? "Belirtilere/Semptomlara Göre Arama"
+                      : "Search By Signs/Symptoms",
+                  description: trlang == true
+                      ? " Hayvan türüne ve belirtilere göre arama yapmak için aşağıdaki butona tıklayın."
+                      : "Click the button below to search by type and sign.",
+                  page: SearchSignDiagnosis(trlang: trlang),),
+                  ],
+                ),
+                
+              ],
+            ),
           ),
         ),
       ),
