@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
 class ContainerWidget extends StatelessWidget {
+  int? index;
   String? text;
   String? headerText;
   String? speciesText;
   String? signsText;
   String? descText;
-  ContainerWidget({this.text, this.descText, this.headerText,this.signsText,this.speciesText});
+  ContainerWidget({this.text, this.index, this.descText, this.headerText,this.signsText,this.speciesText});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,7 @@ class ContainerWidget extends StatelessWidget {
           ),
         ],
         gradient:LinearGradient(
-        colors: [Color(0xFF023059),Color(0xFF012340)],
+        colors: index == null ? [Color(0xFF023059),Color(0xFF012340)] : index!%2==0 ? [Color(0xFF023059),Color(0xFF012340)] :[Color.fromARGB(255, 43, 96, 143),Color.fromARGB(255, 131, 192, 245)],
         begin: Alignment.topRight,
         end: Alignment.bottomLeft,),
       ),

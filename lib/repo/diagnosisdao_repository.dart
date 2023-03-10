@@ -19,7 +19,7 @@ class DiagosisDaoRepository {
     return consList;
   }
 
-  int index=0;
+
   Future<List<Cons>> systemSearch(String species, List signs,bool trlang) async {
     String speciesValue= trlang == true ? "Tüm" : "All";
     trlang=trlang;
@@ -31,7 +31,7 @@ class DiagosisDaoRepository {
          if(signs.length !=0){
            List split=signs[0].split(", ");
            for(int k=0; k<split.length; k++){
-             if(consList[i].signs.contains(split[k])){
+             if(consList[i].signs.toLowerCase().contains(split[k].toLowerCase())){
               if(!allSpecies.contains(consList[i])){
                 allSpecies.add(consList[i]);
               }
@@ -48,7 +48,7 @@ class DiagosisDaoRepository {
         if(signs.length !=0){
            List split=signs[0].split(", ");
            for(int k=0; k<split.length; k++){
-             if(consList[i].signs.contains(split[k])){
+             if(consList[i].signs.toLowerCase().contains(split[k].toLowerCase())){
               if(!allSpecies.contains(consList[i])){
                 allSpecies.add(consList[i]);
               }
@@ -67,7 +67,7 @@ class DiagosisDaoRepository {
       for (var j = 1; j < signs.length; j++) {
         List split=signs[j].split(", ");
         for(int m=0;m<split.length; m++){
-          if(allSpecies[i].signs.contains(split[m])){
+          if(allSpecies[i].signs.toLowerCase().contains(split[m].toLowerCase())){
             piece++;
           }
         }
@@ -77,6 +77,7 @@ class DiagosisDaoRepository {
         }
       }
     }
+    print(allSpecies.length);
     return allSpecies;
   }
 
