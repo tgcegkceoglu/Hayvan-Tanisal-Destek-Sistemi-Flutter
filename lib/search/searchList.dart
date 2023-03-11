@@ -106,6 +106,7 @@ class _SearchListState extends State<SearchList> {
                             child: Column(
                               children: [
                                 ContainerWidget(
+                                  trlang: widget.trlang,
                                   index: index,
                                   speciesText: cons.species,
                                   headerText: cons.header,

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
 class ContainerWidget extends StatelessWidget {
+  bool? trlang;
   int? index;
   String? text;
   String? headerText;
   String? speciesText;
   String? signsText;
   String? descText;
-  ContainerWidget({this.text, this.index, this.descText, this.headerText,this.signsText,this.speciesText});
+  ContainerWidget({this.text,this.trlang, this.index, this.descText, this.headerText,this.signsText,this.speciesText});
 
   @override
   Widget build(BuildContext context) {
@@ -35,19 +36,19 @@ class ContainerWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Header",style: Theme.of(context).textTheme.labelMedium,),
+              Text(trlang == true ? "Başlık": "Header",style: Theme.of(context).textTheme.labelMedium,),
               SizedBox(height: 5,),
               Text(headerText!.length >100 ? headerText!.substring(0,100)+"..." : headerText!,style: Theme.of(context).textTheme.labelSmall),
               SizedBox(height: 12,),
-              Text("Species",style: Theme.of(context).textTheme.labelMedium,),
+              Text(trlang == true ? "Türler": "Species",style: Theme.of(context).textTheme.labelMedium,),
               SizedBox(height: 5,),
               Text(speciesText!.length >100 ? speciesText!.substring(0,100)+"..." : speciesText!,style: Theme.of(context).textTheme.labelSmall),
               SizedBox(height: 12,),
-              Text("Description",style: Theme.of(context).textTheme.labelMedium,),
+              Text(trlang == true ? "Açıklama": "Description",style: Theme.of(context).textTheme.labelMedium,),
               SizedBox(height: 5,),
               Text(descText!.length >100 ? descText!.substring(0,100)+"..." : descText!,style: Theme.of(context).textTheme.labelSmall),
               SizedBox(height: 12,),
-              Text("Signs",style: Theme.of(context).textTheme.labelMedium,),
+              Text(trlang == true ? "Belirtiler / Semptomlar": "Signs",style: Theme.of(context).textTheme.labelMedium,),
               SizedBox(height: 5,),
               Text(signsText!.length >100 ? signsText!.substring(0,100)+"..." : signsText!,style: Theme.of(context).textTheme.labelSmall),
             ],
