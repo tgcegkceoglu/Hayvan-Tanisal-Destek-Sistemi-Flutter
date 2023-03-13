@@ -3,6 +3,8 @@ import 'package:consultant/diagnosisSearch/searchDiagnosis.dart';
 import 'package:consultant/systemSearch/searchSignDiagnosis.dart';
 import 'package:consultant/widget/homePageContainer.dart';
 import 'package:flutter/material.dart';
+import 'package:consultant/constants.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -17,7 +19,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: TextButton(child: Text(trlang==true ? "Hakkımda" : "About Me",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold)),onPressed: (){
+      floatingActionButton: TextButton(child: Text(trlang==true ? "Hakkımda" : "About Me",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize:TextConfig.fontSize12)),onPressed: (){
         Navigator.push(context, MaterialPageRoute(builder: (context) => AboutMe(trlang: trlang,))); 
       },),
       backgroundColor: Color(0xFF012340),
@@ -43,7 +45,7 @@ class _HomePageState extends State<HomePage> {
                             trlang == true ? "Tanısal Destek Sistemi" : "Diagnostic Support System",
                             style: TextStyle(
                               fontWeight: FontWeight.w900,
-                              fontSize:trlang==true ? 24 : 22,
+                              fontSize:trlang==true ? TextConfig.fontSize24 : TextConfig.fontSize22,
                               color: Colors.transparent,
                               decoration: TextDecoration.underline,
                               decorationThickness: 2,
@@ -68,7 +70,6 @@ class _HomePageState extends State<HomePage> {
                           });
                         }),
                         child: Container(
-                          height: 25,
                           padding: EdgeInsets.all(5),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.only(
@@ -77,7 +78,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                             color:trlang==true ?  Colors.white : Color.fromARGB(255, 3, 56, 102) ,
                             ),
-                          child: Text("TR",style: TextStyle(color:Color(0xFF012340)))),
+                          child: Text("TR",style: TextStyle(color:Color(0xFF012340),fontSize:TextConfig.fontSize12))),
                       ),
                       GestureDetector(
                         onTap: (() {
@@ -88,16 +89,15 @@ class _HomePageState extends State<HomePage> {
                           });
                         }),
                         child: Container(
-                          height: 25,
                           padding: EdgeInsets.all(5),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.only(
                               topRight: Radius.circular(5),
                               bottomRight: Radius.circular(5),
                             ),
-                            color:trlang== false ? Colors.white :Color.fromARGB(255, 3, 56, 102) 
+                            color:trlang==false ?  Colors.white : Color.fromARGB(255, 3, 56, 102) ,
                             ),
-                          child: Text("EN",style: TextStyle(color:Color(0xFF012340)))),
+                          child: Text("EN",style: TextStyle(color:Color(0xFF012340),fontSize:TextConfig.fontSize12))),
                       ),
                     ],
                     ),
@@ -122,7 +122,7 @@ class _HomePageState extends State<HomePage> {
                       ? "Belirtilere/Semptomlara Göre Arama"
                       : "Search By Signs/Symptoms",
                   description: trlang == true
-                      ? " Hayvan türüne ve belirtilere göre arama yapmak için aşağıdaki butona tıklayın."
+                      ? "Hayvan türüne ve belirtilere göre arama yapmak için aşağıdaki butona tıklayın."
                       : "Click the button below to search by type and sign.",
                   page: SearchSignDiagnosis(trlang: trlang),),
                   ],

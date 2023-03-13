@@ -3,7 +3,9 @@ import 'package:consultant/systemSearch/systemSearch.dart';
 import 'package:consultant/widget/button.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:consultant/constants.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:consultant/constants.dart';
 import 'package:url_launcher_platform_interface/url_launcher_platform_interface.dart';
 
 
@@ -58,7 +60,7 @@ class _SearchSignDiagnosisState extends State<SearchSignDiagnosis> {
             onPressed: (){
               Navigator.pop(context);
             }, icon:Icon(Icons.arrow_back_ios,size: 20,color: Colors.white,)),
-          title: Text(widget.trlang == true ? "Tanısal Destek Sistemi" : "Diagnostic Support System",style:TextStyle(fontWeight: FontWeight.bold)),
+          title: Text(widget.trlang == true ? "Tanısal Destek Sistemi" : "Diagnostic Support System",style:TextStyle(fontWeight: FontWeight.bold,fontSize:TextConfig.fontSize14)),
           actions: [
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 15),
@@ -97,7 +99,6 @@ class _SearchSignDiagnosisState extends State<SearchSignDiagnosis> {
                   Text(widget.trlang  == true ? "Türler" : "Species",style: Theme.of(context).textTheme.labelLarge),
                   SizedBox(height: 8,),
                   Container(
-                    height: 45,
                     decoration: BoxDecoration(
                       color: Color(0xFFF5F5F5),
                       border: Border.all(
@@ -118,7 +119,7 @@ class _SearchSignDiagnosisState extends State<SearchSignDiagnosis> {
                   child: DropdownButton2(
                     buttonPadding: EdgeInsets.only(right: 10),
                     isExpanded: true,
-                    items: signList.map((item) => DropdownMenuItem<String>(value: item,child: Text(item,style: const TextStyle(fontSize: 14,color: Colors.black,),overflow: TextOverflow.ellipsis,))).toList(),
+                    items: signList.map((item) => DropdownMenuItem<String>(value: item,child: Text(item,style:TextStyle(fontSize:TextConfig.fontSize14,color: Colors.black,),overflow: TextOverflow.ellipsis,))).toList(),
                     value: signValue,
                     onChanged: (value) {
                       setState(() {
@@ -144,7 +145,6 @@ class _SearchSignDiagnosisState extends State<SearchSignDiagnosis> {
                   Text(widget.trlang  == true ? "Sistem" : "System",style: Theme.of(context).textTheme.labelLarge),
                   SizedBox(height: 8,),
                   Container(
-                    height: 45,
                     decoration: BoxDecoration(
                       color: Color(0xFFF5F5F5),
                       border: Border.all(
@@ -165,7 +165,7 @@ class _SearchSignDiagnosisState extends State<SearchSignDiagnosis> {
                   child: DropdownButton2(
                     buttonPadding: EdgeInsets.only(right: 10),
                     isExpanded: true,
-                    items: systemList.map((item) => DropdownMenuItem<String>(value: item,child: Text(item,style: const TextStyle(fontSize: 14,color: Colors.black,),overflow: TextOverflow.ellipsis,))).toList(),
+                    items: systemList.map((item) => DropdownMenuItem<String>(value: item,child: Text(item,style:TextStyle(fontSize:TextConfig.fontSize14,color: Colors.black,),overflow: TextOverflow.ellipsis,))).toList(),
                     value: systemValue,
                     onChanged: (value) {
                       setState(() {
@@ -225,7 +225,7 @@ class _SearchSignDiagnosisState extends State<SearchSignDiagnosis> {
                           border: Border.all(width: 1, color: Color(0xFF012340))
                         ),
                         child: ListTile(
-                          title: Text(selectedSystemList[index],style: TextStyle(color: Color(0xFF012340))),
+                          title: Text(selectedSystemList[index],style: TextStyle(color: Color(0xFF012340),fontSize:TextConfig.fontSize12)),
                           trailing: IconButton(icon: Icon(Icons.delete,color: Color(0xFF012340),),onPressed: (){
                             setState(() {
                                 selectedSystemList.remove(selectedSystemList[index]);

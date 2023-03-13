@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:consultant/constants.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:consultant/constants.dart';
+
 
 class HomePageContainer extends StatelessWidget {
   String iconName;
@@ -28,11 +31,11 @@ class HomePageContainer extends StatelessWidget {
             borderRadius: BorderRadius.circular(34),
             border: Border.all(width: 1,color: Colors.white)
           ),
-          child: SvgPicture.asset('assets/images/$iconName',height: 36, width:36,fit: BoxFit.cover)),
+          child: SvgPicture.asset('assets/images/$iconName',height: HeightWidthConfig.height36, width:HeightWidthConfig.width36,fit: BoxFit.cover)),
           SizedBox(height: 25,),
-          Text(header,style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),),
+          Text(header,style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize:TextConfig.fontSize18)),
           SizedBox(height: 8,),
-          Text(description,style: TextStyle(color: Colors.white,fontSize: 14,fontWeight: FontWeight.w500),),
+          Text(description,style: TextStyle(color: Colors.white,fontSize: TextConfig.fontSize12,fontWeight: FontWeight.w500),),
           SizedBox(height: 25,),
           GestureDetector(
             onTap:(){
@@ -45,10 +48,10 @@ class HomePageContainer extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               padding: EdgeInsets.symmetric(horizontal: 16,vertical: 10),
               decoration: BoxDecoration(
-                border: Border.all(width: 1,color: Colors.white),
+                border: Border.all(width: 2,color: Colors.white),
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: Center(child: Text(button,style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500),)),
+              child: Center(child: Text(button,style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize:TextConfig.fontSize14),)),
             ),
           ),
         ],

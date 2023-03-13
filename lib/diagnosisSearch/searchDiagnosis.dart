@@ -5,6 +5,8 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher_platform_interface/url_launcher_platform_interface.dart';
+import 'package:consultant/constants.dart';
+
 
 class SearchDiagnosis extends StatefulWidget {
   final bool trlang;
@@ -41,16 +43,24 @@ class _SearchDiagnosisState extends State<SearchDiagnosis> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: Image.asset('assets/images/animal.png'),
+      bottomNavigationBar:Container(
+        width: MediaQuery.of(context).size.width,
+        height: 100,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            fit: BoxFit.fill,
+            image: AssetImage("assets/images/animal.png"),
+          ),
+        ),
+      ),
       backgroundColor: Color(0XFFF5F5F5),
       appBar: AppBar(
-          leadingWidth: 44,
           leading:IconButton(
             padding: EdgeInsets.symmetric(horizontal: 10),
             onPressed: (){
               Navigator.pop(context);
             }, icon:Icon(Icons.arrow_back_ios,size: 20,color: Colors.white,)),
-          title: Text(widget.trlang == true ? "Tanısal Destek Sistemi" : "Diagnostic Support System",style:TextStyle(fontWeight: FontWeight.bold)),
+          title:Text(widget.trlang == true ? "Tanısal Destek Sistemi" : "Diagnostic Support System",style:TextStyle(fontWeight: FontWeight.bold,fontSize:TextConfig.fontSize17)),
           actions: [
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 15),
@@ -69,7 +79,7 @@ class _SearchDiagnosisState extends State<SearchDiagnosis> {
                       throw Exception('Could not launch $url');
                     }
                 },
-                child: Image.asset('assets/images/haytek.png',)),
+                child: Container(child: Image.asset('assets/images/haytek.png',))),
             )
           ],
 
@@ -90,7 +100,6 @@ class _SearchDiagnosisState extends State<SearchDiagnosis> {
                   Text(widget.trlang == true ? "Tür" : "Species",style: Theme.of(context).textTheme.labelLarge),
                   SizedBox(height: 8,),
                   Container(
-                    height: 45,
                     decoration: BoxDecoration(
                       color: Color(0xFFF5F5F5),
                       border: Border.all(
@@ -112,7 +121,7 @@ class _SearchDiagnosisState extends State<SearchDiagnosis> {
                     dropdownMaxHeight: MediaQuery.of(context).size.height/3,
                     buttonPadding: EdgeInsets.only(right: 10),
                     isExpanded: true,
-                    items: list.map((item) => DropdownMenuItem<String>(value: item,child: Text(item,style: const TextStyle(fontSize: 14,color: Colors.black,),overflow: TextOverflow.ellipsis,))).toList(),
+                    items: list.map((item) => DropdownMenuItem<String>(value: item,child: Text(item,style: TextStyle(fontSize: TextConfig.fontSize14,color: Colors.black,),overflow: TextOverflow.ellipsis,))).toList(),
                     value: dropdownValue,
                     onChanged: (value) {
                       setState(() {

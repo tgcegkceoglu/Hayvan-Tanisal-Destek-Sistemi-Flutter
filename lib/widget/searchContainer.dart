@@ -13,6 +13,7 @@ class ContainerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: MediaQuery.of(context).size.width,
       margin: EdgeInsets.only(bottom: 15),
       padding: EdgeInsets.all(16),
       decoration: BoxDecoration(

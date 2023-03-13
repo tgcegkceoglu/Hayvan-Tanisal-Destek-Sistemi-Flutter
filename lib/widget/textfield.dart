@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:consultant/constants.dart';
 
 class TextFieldWidget extends StatefulWidget {
   String? hinttext;
@@ -19,7 +20,6 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
     return Column(
       children: [
         Container(
-          height: 45,
           padding: widget.icon ==null ?  EdgeInsets.symmetric(horizontal: 16,) : EdgeInsets.only(left: 16, top: 5, bottom: 5),
           decoration: BoxDecoration(
             color: Color(0xFFF5F5F5),
@@ -51,7 +51,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
               border: InputBorder.none,
               suffixIcon: widget.icon !=null ? widget.icon : null,
               hintText: widget.hinttext !=null ? widget.hinttext : null,
-              hintStyle: TextStyle(color: Color(0xFF023059),),
+              hintStyle: TextStyle(color: Color(0xFF023059),fontSize:TextConfig.fontSize12),
               focusedBorder: InputBorder.none,
               enabledBorder: InputBorder.none,
               errorBorder: InputBorder.none,

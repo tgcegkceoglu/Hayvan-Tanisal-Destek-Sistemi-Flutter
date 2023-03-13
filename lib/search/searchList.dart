@@ -85,7 +85,7 @@ class _SearchListState extends State<SearchList> {
                 TextFieldWidget(
                   onChanged: _onItemChanged,
                   controller: controller, 
-                  hinttext: "Search...", 
+                  hinttext: widget.trlang == true ? "Arama..." : "Search...", 
                   icon:SvgPicture.asset('assets/images/search.svg')),
                   SizedBox(height: 20,),
                  Expanded(

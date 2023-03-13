@@ -2,6 +2,7 @@ import 'package:async/async.dart';
 import 'package:consultant/cubit/systemCubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:consultant/constants.dart';
 
 
 class SystemSearch extends StatefulWidget {
@@ -71,7 +72,7 @@ class _SystemSearchState extends State<SystemSearch> {
           decoration: InputDecoration(
             border: InputBorder.none,
             hintText: widget.trlang == true ? "Belirtileri/Semptomları Arayın..." : "Look for Signs/Symptoms...",
-            hintStyle: TextStyle(color: Colors.white.withOpacity(0.5)),
+            hintStyle: TextStyle(color: Colors.white.withOpacity(0.5),fontSize:TextConfig.fontSize12),
           ),
         ),
       ),
@@ -95,14 +96,14 @@ class _SystemSearchState extends State<SystemSearch> {
                         decoration: BoxDecoration(
                           border: Border(bottom: BorderSide(width: 1, color: Colors.grey)),
                         ),
-                        child:Text(system),),
+                        child:Text(system,style:TextStyle(fontSize:TextConfig.fontSize12))),
                     );
                   }),
                 );
               }
               else{
                 return Center(
-                  child: Text(widget.trlang == true ?  "Herhangi Bir Sonuç Bulunamadı!" : "No Results Found!"),
+                  child: Text(widget.trlang == true ?  "Herhangi Bir Sonuç Bulunamadı!" : "No Results Found!",style:TextStyle(fontSize:TextConfig.fontSize12)),
                 );
               }
               }))
