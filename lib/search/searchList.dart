@@ -1,3 +1,4 @@
+import 'package:consultant/constants.dart';
 import 'package:consultant/cubit/DiagnosisCubit.dart';
 import 'dart:async';
 import 'package:async/async.dart';
@@ -66,19 +67,20 @@ class _SearchListState extends State<SearchList> {
       child: Scaffold(
         backgroundColor: Color(0xFFF5F5F5),
         appBar: AppBar(
-          leadingWidth: 44,
-          leading:IconButton(
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            onPressed: (){
-              Navigator.pop(context);
-            }, icon:Icon(Icons.arrow_back_ios,size: 20,color:Color(0xFF012340))),
+        toolbarHeight: SizedConfig.size30,
+        leading:IconButton(
+        padding: EdgeInsets.symmetric(horizontal: 10,vertical:10),
+        onPressed: (){
+          Navigator.pop(context);
+        }, icon:Icon(Icons.arrow_back_ios,size: SizedConfig.size17,color: Color(0xFF012340),)),
           backgroundColor: Colors.transparent,
           elevation: 0,
           ),
           body: Padding(
-            padding: const EdgeInsets.only(left: 10,right: 10),
+            padding: const EdgeInsets.only(left: 10,right: 10,top: 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text("SEARCH RESULTS",style: Theme.of(context).textTheme.labelLarge),
                 SizedBox(height: 20,),
@@ -86,7 +88,7 @@ class _SearchListState extends State<SearchList> {
                   onChanged: _onItemChanged,
                   controller: controller, 
                   hinttext: widget.trlang == true ? "Arama..." : "Search...", 
-                  icon:SvgPicture.asset('assets/images/search.svg')),
+                  icon:SvgPicture.asset('assets/images/search.svg',)),
                   SizedBox(height: 20,),
                  Expanded(
                   child:BlocBuilder<DiagnosisCubit,List<Cons>>(
@@ -121,7 +123,7 @@ class _SearchListState extends State<SearchList> {
                     }
                     else{
                       return Center(
-                        child: Text("Herhangi Bir Sonuç Bulunamadı!"),
+                        child: Text("Herhangi Bir Sonuç Bulunamadı!",style: TextStyle(fontSize: SizedConfig.size8),),
                       );
                     }
                     }),

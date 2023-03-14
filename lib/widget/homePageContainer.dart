@@ -31,7 +31,7 @@ class HomePageContainer extends StatelessWidget {
             borderRadius: BorderRadius.circular(34),
             border: Border.all(width: 1,color: Colors.white)
           ),
-          child: SvgPicture.asset('assets/images/$iconName',height: HeightWidthConfig.height36, width:HeightWidthConfig.width36,fit: BoxFit.cover)),
+          child: SvgPicture.asset('assets/images/$iconName',height: SizedConfig.size17, width:SizedConfig.size17,fit: BoxFit.cover)),
           SizedBox(height: 25,),
           Text(header,style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize:TextConfig.fontSize18)),
           SizedBox(height: 8,),

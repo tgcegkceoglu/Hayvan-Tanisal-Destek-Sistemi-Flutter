@@ -43,57 +43,52 @@ class _SearchDiagnosisState extends State<SearchDiagnosis> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar:Container(
-        width: MediaQuery.of(context).size.width,
-        height: 100,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            fit: BoxFit.fill,
-            image: AssetImage("assets/images/animal.png"),
-          ),
-        ),
-      ),
+      bottomNavigationBar:Image.asset('assets/images/animal.png'),
       backgroundColor: Color(0XFFF5F5F5),
       appBar: AppBar(
-          leading:IconButton(
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            onPressed: (){
-              Navigator.pop(context);
-            }, icon:Icon(Icons.arrow_back_ios,size: 20,color: Colors.white,)),
-          title:Text(widget.trlang == true ? "Tanısal Destek Sistemi" : "Diagnostic Support System",style:TextStyle(fontWeight: FontWeight.bold,fontSize:TextConfig.fontSize17)),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 15),
-              child: GestureDetector(
-                onTap:() async{
-                    String url="http://haytek.mehmetakif.edu.tr";
-                    if (!await launcher.launch(
-                      url,
-                      useSafariVC: false,
-                      useWebView: false,
-                      enableJavaScript: false,
-                      enableDomStorage: false,
-                      universalLinksOnly: false,
-                      headers: <String, String>{},
-                    )) {
-                      throw Exception('Could not launch $url');
-                    }
-                },
-                child: Container(child: Image.asset('assets/images/haytek.png',))),
-            )
-          ],
-
-          backgroundColor:Color(0xFF012340),
-          elevation: 0,
+      toolbarHeight: SizedConfig.size30,
+      leading:IconButton(
+      constraints: BoxConstraints(),
+      padding: EdgeInsets.only(left: 15),
+      onPressed: (){
+        Navigator.pop(context);
+      }, 
+      iconSize: SizedConfig.size17,
+      icon:Icon(Icons.arrow_back_ios,size: SizedConfig.size17,color: Color(0xFFfefeff))),
+      title:Text(widget.trlang == true ? "Tanısal Destek Sistemi" : "Diagnostic Support System",style:TextStyle(fontWeight: FontWeight.bold,fontSize:TextConfig.fontSize17)),
+      actions: [
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 15),
+          child: GestureDetector(
+            onTap:() async{
+                String url="http://haytek.mehmetakif.edu.tr";
+                if (!await launcher.launch(
+                  url,
+                  useSafariVC: false,
+                  useWebView: false,
+                  enableJavaScript: false,
+                  enableDomStorage: false,
+                  universalLinksOnly: false,
+                  headers: <String, String>{},
+                )) {
+                  throw Exception('Could not launch $url');
+                }
+            },
+            child: Container(child: Image.asset('assets/images/haytek.png',))),
+        )
+      ],
+      backgroundColor:Color(0xFF012340),
+      elevation: 0,
       ),
       body: Padding(
-        padding: const EdgeInsets.only(top: 80,left: 10,right: 10),
+        padding: const EdgeInsets.only(left: 15,right: 15),
         child: CustomScrollView(
           slivers: [
             SliverFillRemaining(
               hasScrollBody: false,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(widget.trlang == true ? "TANIYA GÖRE ARAMA" : "SEARCH BY DIAGNOSIS",style: Theme.of(context).textTheme.labelLarge),
                   SizedBox(height: 30,),

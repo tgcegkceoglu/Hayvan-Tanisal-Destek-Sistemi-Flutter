@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:consultant/constants.dart';
 
 class TextFieldWidget extends StatefulWidget {
@@ -20,7 +19,8 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
     return Column(
       children: [
         Container(
-          padding: widget.icon ==null ?  EdgeInsets.symmetric(horizontal: 16,) : EdgeInsets.only(left: 16, top: 5, bottom: 5),
+          height: SizedConfig.size25,
+          padding:EdgeInsets.symmetric(horizontal: 16,),
           decoration: BoxDecoration(
             color: Color(0xFFF5F5F5),
             border: Border.all(
@@ -43,15 +43,16 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
             cursorColor: Color(0xFF023059),
             style: TextStyle(
               color: Color(0xFF023059),
+              fontSize:TextConfig.fontSize12,
             ),
             onChanged: widget.onChanged,
+            textAlignVertical: TextAlignVertical.center,
             decoration: InputDecoration(
-              contentPadding: EdgeInsets.only(bottom: 10),
               fillColor: Colors.white,
               border: InputBorder.none,
               suffixIcon: widget.icon !=null ? widget.icon : null,
               hintText: widget.hinttext !=null ? widget.hinttext : null,
-              hintStyle: TextStyle(color: Color(0xFF023059),fontSize:TextConfig.fontSize12),
+              hintStyle: TextStyle(color: Color(0xFF023059),fontSize:TextConfig.fontSize12,),
               focusedBorder: InputBorder.none,
               enabledBorder: InputBorder.none,
               errorBorder: InputBorder.none,

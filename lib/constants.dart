@@ -29,26 +29,24 @@ class TextConfig {
   }
 }
 
-class HeightWidthConfig {
-  static late double width36;
-  static late double height36;
-  static late double fontSize14;
-  static late double fontSize17;
-  static late double fontSize18;
-  static late double fontSize20;
-  static late double fontSize22;
-  static late double fontSize24;
-  static late double fontSize30;
+class SizedConfig {
+  static late double size30;
+  static late double size17;
+  static late double size13;
+  static late double size10;
+  static late double size8;
+  static late double size3;
+  static late double size20;
+  static late double size25;
 
   static void init(BuildContext context) {
-    width36= 17 * screenWidth / 360;
-    height36= 17 * screenHeight / 360;
-    fontSize14= 14 * screenWidth / 360;
-    fontSize17= 17 * screenWidth / 360;
-    fontSize18= 18 * screenWidth / 360;
-    fontSize20= 20 * screenWidth / 360;
-    fontSize22= 22 * screenWidth / 360;
-    fontSize24= 24 * screenWidth / 360;
-    fontSize30= 30 * screenWidth / 360;
+    size8= 8 * screenHeight / 360;
+    size3= 3* screenHeight / 360;
+    size13= 13 * screenHeight / 360;
+    size10= 10 * screenHeight / 360;
+    size17= 17 * screenHeight / 360;
+    size20= 20 * screenHeight / 360;
+    size25= 25 * screenHeight / 360;
+    size30= 30 * screenHeight / 360;
   }
 }

@@ -60,8 +60,9 @@ class _SystemSearchState extends State<SystemSearch> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: SizedConfig.size30,
         backgroundColor:Color(0xFF012340),
-        leading: Icon(Icons.search),
+        leading: Icon(Icons.search,size: SizedConfig.size10,),
         title: TextField(
           cursorColor: Color(0xFF023059),
           style: TextStyle(
@@ -72,7 +73,7 @@ class _SystemSearchState extends State<SystemSearch> {
           decoration: InputDecoration(
             border: InputBorder.none,
             hintText: widget.trlang == true ? "Belirtileri/Semptomları Arayın..." : "Look for Signs/Symptoms...",
-            hintStyle: TextStyle(color: Colors.white.withOpacity(0.5),fontSize:TextConfig.fontSize12),
+            hintStyle: TextStyle(color: Colors.white.withOpacity(0.5),fontSize:TextConfig.fontSize14),
           ),
         ),
       ),

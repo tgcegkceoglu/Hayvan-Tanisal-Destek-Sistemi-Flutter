@@ -54,200 +54,198 @@ class _SearchSignDiagnosisState extends State<SearchSignDiagnosis> {
       bottomNavigationBar: Image.asset('assets/images/animal.png'),
       backgroundColor: Color(0xFFF5F5F5),
       appBar: AppBar(
-          leadingWidth: 44,
-          leading:IconButton(
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            onPressed: (){
-              Navigator.pop(context);
-            }, icon:Icon(Icons.arrow_back_ios,size: 20,color: Colors.white,)),
-          title: Text(widget.trlang == true ? "Tanısal Destek Sistemi" : "Diagnostic Support System",style:TextStyle(fontWeight: FontWeight.bold,fontSize:TextConfig.fontSize14)),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 15),
-              child: GestureDetector(
-              onTap:() async{
-                String url="http://haytek.mehmetakif.edu.tr";
-                if (!await launcher.launch(
-                  url,
-                  useSafariVC: false,
-                  useWebView: false,
-                  enableJavaScript: false,
-                  enableDomStorage: false,
-                  universalLinksOnly: false,
-                  headers: <String, String>{},
-                )) {
-                  throw Exception('Could not launch $url');
-                }
-              },
-              child: Image.asset('assets/images/haytek.png',)),
-            )
-          ],
-          backgroundColor:Color(0xFF012340),
-          elevation: 0,
+      toolbarHeight: SizedConfig.size30,
+      leading:IconButton(
+      constraints: BoxConstraints(),
+      padding: EdgeInsets.only(left: 15),
+      onPressed: (){
+        Navigator.pop(context);
+      }, 
+      iconSize: SizedConfig.size17,
+      icon:Icon(Icons.arrow_back_ios,size: SizedConfig.size17,color: Color(0xFFfefeff))),
+      title: Text(widget.trlang == true ? "Tanısal Destek Sistemi" : "Diagnostic Support System",style:TextStyle(fontWeight: FontWeight.bold,fontSize:TextConfig.fontSize17)),
+      actions: [
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 15),
+          child: GestureDetector(
+          onTap:() async{
+            String url="http://haytek.mehmetakif.edu.tr";
+            if (!await launcher.launch(
+              url,
+              useSafariVC: false,
+              useWebView: false,
+              enableJavaScript: false,
+              enableDomStorage: false,
+              universalLinksOnly: false,
+              headers: <String, String>{},
+            )) {
+              throw Exception('Could not launch $url');
+            }
+          },
+          child: Image.asset('assets/images/haytek.png',)),
+        )
+      ],
+      backgroundColor:Color(0xFF012340),
+      elevation: 0,
       ),
       body: Padding(
-        padding: const EdgeInsets.only(top: 80,left: 10,right: 10),
-        child: CustomScrollView(
-          slivers: [
-            SliverFillRemaining(
-              hasScrollBody: false,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(widget.trlang  == true ? "Belirtilere/Semptomlara Göre Arama" : "SEARCH BY SIGNS / SYMPTOMS",style: Theme.of(context).textTheme.labelLarge),
-                  SizedBox(height: 30,),
-                  Text(widget.trlang  == true ? "Türler" : "Species",style: Theme.of(context).textTheme.labelLarge),
-                  SizedBox(height: 8,),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Color(0xFFF5F5F5),
-                      border: Border.all(
-                        width: 1,
-                        color:Color(0xFF012340).withOpacity(.6),
+        padding: const EdgeInsets.only(left: 10,right: 10,),
+        child: Center(
+          child: ListView(
+              shrinkWrap: true,
+              children: [
+                Text(widget.trlang  == true ? "Belirtilere/Semptomlara Göre Arama" : "SEARCH BY SIGNS / SYMPTOMS",style: Theme.of(context).textTheme.labelLarge),
+                SizedBox(height: 30,),
+                Text(widget.trlang  == true ? "Türler" : "Species",style: Theme.of(context).textTheme.labelLarge),
+                SizedBox(height: 8,),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Color(0xFFF5F5F5),
+                    border: Border.all(
+                      width: 1,
+                      color:Color(0xFF012340).withOpacity(.6),
+                    ),
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.shade300,
+                        spreadRadius:3,
+                        blurRadius: 3,
+                        offset: Offset(0, 3),
                       ),
-                      borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.shade300,
-                          spreadRadius:3,
-                          blurRadius: 3,
-                          offset: Offset(0, 3),
-                        ),
-                      ],
-                    ),
-                  child: DropdownButtonHideUnderline(
-                  child: DropdownButton2(
-                    buttonPadding: EdgeInsets.only(right: 10),
-                    isExpanded: true,
-                    items: signList.map((item) => DropdownMenuItem<String>(value: item,child: Text(item,style:TextStyle(fontSize:TextConfig.fontSize14,color: Colors.black,),overflow: TextOverflow.ellipsis,))).toList(),
-                    value: signValue,
-                    onChanged: (value) {
-                      setState(() {
-                        signValue = value as String;
-                      });
-                    },
-                    icon: const Icon(Icons.keyboard_arrow_down_rounded,),
-                    iconSize:25,
-                    iconEnabledColor: Colors.black54,
-                    iconDisabledColor: Colors.black54,
-                    isDense: true,
-                    buttonElevation: 0,
-                    dropdownDecoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(10)
-                    ),
-                    buttonHeight: 45,
-                    dropdownElevation: 0,
-                    scrollbarThickness: 0,
-                    scrollbarAlwaysShow: true,
-                    ),
-                    ),
-                  ),
-                  SizedBox(height: 16,),
-                  Text(widget.trlang  == true ? "Sistem" : "System",style: Theme.of(context).textTheme.labelLarge),
-                  SizedBox(height: 8,),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Color(0xFFF5F5F5),
-                      border: Border.all(
-                        width: 1,
-                        color:Color(0xFF012340).withOpacity(.6),
-                      ),
-                      borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.shade300,
-                          spreadRadius:3,
-                          blurRadius: 3,
-                          offset: Offset(0, 3),
-                        ),
-                      ],
-                    ),
-                  child: DropdownButtonHideUnderline(
-                  child: DropdownButton2(
-                    buttonPadding: EdgeInsets.only(right: 10),
-                    isExpanded: true,
-                    items: systemList.map((item) => DropdownMenuItem<String>(value: item,child: Text(item,style:TextStyle(fontSize:TextConfig.fontSize14,color: Colors.black,),overflow: TextOverflow.ellipsis,))).toList(),
-                    value: systemValue,
-                    onChanged: (value) {
-                      setState(() {
-                        systemValue = value as String;
-                      });
-                    },
-                    icon: const Icon(Icons.keyboard_arrow_down_rounded,),
-                    iconSize:25,
-                    iconEnabledColor: Colors.black54,
-                    iconDisabledColor: Colors.black54,
-                    isDense: true,
-                    buttonElevation: 0,
-                    dropdownDecoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(10)
-                    ),
-                    buttonHeight: 45,
-                    dropdownElevation: 0,
-                    scrollbarThickness: 0,
-                    scrollbarAlwaysShow: true,
-                    ),
-                    ),
-                  ),
-                  SizedBox(height: 16,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(widget.trlang  == true ? "Belirti / Semptom Anahtar Kelime" :  "Sign / Symptom Keyword",style: Theme.of(context).textTheme.labelLarge),
-                      GestureDetector(
-                        onTap: () async{
-                          result = await Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => SystemSearch(system: systemValue,trlang: widget.trlang,)),
-                          );
-                          setState(() {
-                            if(result !=null && !selectedSystemList.contains(result))
-                            selectedSystemList.add(result);
-                          });
-                        },
-                        child: Container(decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          color: Color(0xFF012340),
-                        ),child: Icon(Icons.add,color: Colors.white,),),
-                      )
                     ],
                   ),
-                  SizedBox(height: 20,),
-                  Container(
-                    height: selectedSystemList.length <3 ? (selectedSystemList.length*70):150,
-                    child: ListView.builder(
-                      padding: EdgeInsets.zero,
-                      shrinkWrap: true,
-                      itemCount: selectedSystemList.length,
-                      itemBuilder: (context, index) {
-                      return Container(
-                        margin: EdgeInsets.only(bottom: 10),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          border: Border.all(width: 1, color: Color(0xFF012340))
-                        ),
-                        child: ListTile(
-                          title: Text(selectedSystemList[index],style: TextStyle(color: Color(0xFF012340),fontSize:TextConfig.fontSize12)),
-                          trailing: IconButton(icon: Icon(Icons.delete,color: Color(0xFF012340),),onPressed: (){
-                            setState(() {
-                                selectedSystemList.remove(selectedSystemList[index]);
-                            });
-                          
-                          },),
-                        ),
-                      );
-                    },),
+                child: DropdownButtonHideUnderline(
+                child: DropdownButton2(
+                  buttonPadding: EdgeInsets.only(right: 10),
+                  isExpanded: true,
+                  items: signList.map((item) => DropdownMenuItem<String>(value: item,child: Text(item,style:TextStyle(fontSize:TextConfig.fontSize14,color: Colors.black,),overflow: TextOverflow.ellipsis,))).toList(),
+                  value: signValue,
+                  onChanged: (value) {
+                    setState(() {
+                      signValue = value as String;
+                    });
+                  },
+                  icon: const Icon(Icons.keyboard_arrow_down_rounded,),
+                  iconSize:25,
+                  iconEnabledColor: Colors.black54,
+                  iconDisabledColor: Colors.black54,
+                  isDense: true,
+                  buttonElevation: 0,
+                  dropdownDecoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(10)
                   ),
-                  SizedBox(height: 8,),
-                  ButtonWidget(
-                  trlang: widget.trlang,
-                  onChanged:(){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => SearchList(id: 2,species: signValue, signs:selectedSystemList,trlang: widget.trlang,))); 
-                  },),
+                  buttonHeight: 45,
+                  dropdownElevation: 0,
+                  scrollbarThickness: 0,
+                  scrollbarAlwaysShow: true,
+                  ),
+                  ),
+                ),
+                SizedBox(height: 16,),
+                Text(widget.trlang  == true ? "Sistem" : "System",style: Theme.of(context).textTheme.labelLarge),
+                SizedBox(height: 8,),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Color(0xFFF5F5F5),
+                    border: Border.all(
+                      width: 1,
+                      color:Color(0xFF012340).withOpacity(.6),
+                    ),
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.shade300,
+                        spreadRadius:3,
+                        blurRadius: 3,
+                        offset: Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                child: DropdownButtonHideUnderline(
+                child: DropdownButton2(
+                  buttonPadding: EdgeInsets.only(right: 10),
+                  isExpanded: true,
+                  items: systemList.map((item) => DropdownMenuItem<String>(value: item,child: Text(item,style:TextStyle(fontSize:TextConfig.fontSize14,color: Colors.black,),overflow: TextOverflow.ellipsis,))).toList(),
+                  value: systemValue,
+                  onChanged: (value) {
+                    setState(() {
+                      systemValue = value as String;
+                    });
+                  },
+                  icon: const Icon(Icons.keyboard_arrow_down_rounded,),
+                  iconSize:25,
+                  iconEnabledColor: Colors.black54,
+                  iconDisabledColor: Colors.black54,
+                  isDense: true,
+                  buttonElevation: 0,
+                  dropdownDecoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(10)
+                  ),
+                  buttonHeight: 45,
+                  dropdownElevation: 0,
+                  scrollbarThickness: 0,
+                  scrollbarAlwaysShow: true,
+                  ),
+                  ),
+                ),
+                SizedBox(height: 16,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(widget.trlang  == true ? "Belirti / Semptom Anahtar Kelime" :  "Sign / Symptom Keyword",style: Theme.of(context).textTheme.labelLarge),
+                    GestureDetector(
+                      onTap: () async{
+                        result = await Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => SystemSearch(system: systemValue,trlang: widget.trlang,)),
+                        );
+                        setState(() {
+                          if(result !=null && !selectedSystemList.contains(result))
+                          selectedSystemList.add(result);
+                        });
+                      },
+                      child: Container(decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: Color(0xFF012340),
+                      ),child: Icon(Icons.add,color: Colors.white,size: SizedConfig.size13,),),
+                    )
                   ],
-              ),
+                ),
+                SizedBox(height: 20,),
+                Container(
+                  height: selectedSystemList.length <3 ? (selectedSystemList.length*70):150,
+                  child: ListView.builder(
+                    padding: EdgeInsets.zero,
+                    shrinkWrap: true,
+                    itemCount: selectedSystemList.length,
+                    itemBuilder: (context, index) {
+                    return Container(
+                      margin: EdgeInsets.only(bottom: 10),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(width: 1, color: Color(0xFF012340))
+                      ),
+                      child: ListTile(
+                        title: Text(selectedSystemList[index],style: TextStyle(color: Color(0xFF012340),fontSize:TextConfig.fontSize12)),
+                        trailing: IconButton(icon: Icon(Icons.delete,color: Color(0xFF012340),),onPressed: (){
+                          setState(() {
+                              selectedSystemList.remove(selectedSystemList[index]);
+                          });
+                        
+                        },),
+                      ),
+                    );
+                  },),
+                ),
+                SizedBox(height: 8,),
+                ButtonWidget(
+                trlang: widget.trlang,
+                onChanged:(){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => SearchList(id: 2,species: signValue, signs:selectedSystemList,trlang: widget.trlang,))); 
+                },),
+                ],
             ),
-          ],
         ),
-      ),
+        ),
     );
   }
 }

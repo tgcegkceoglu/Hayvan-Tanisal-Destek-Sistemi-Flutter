@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextConfig.init(context);
-    HeightWidthConfig.init(context);
+    SizedConfig.init(context);
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => DiagnosisCubit()),

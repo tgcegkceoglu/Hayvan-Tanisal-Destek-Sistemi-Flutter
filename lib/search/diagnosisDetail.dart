@@ -1,3 +1,4 @@
+import 'package:consultant/constants.dart';
 import 'package:consultant/entity/veriler.dart';
 import 'package:consultant/search/searchList.dart';
 import 'package:consultant/widget/searchContainer.dart';
@@ -19,12 +20,12 @@ class _DiagnosisDetailState extends State<DiagnosisDetail> {
     return Scaffold(
       backgroundColor: Color(0XFFF5F5F5),
       appBar: AppBar(
-        leadingWidth: 44,
+        toolbarHeight: SizedConfig.size30,
         leading:IconButton(
-          padding: EdgeInsets.symmetric(horizontal: 10),
-          onPressed: (){
-            Navigator.pop(context);
-          }, icon:Icon(Icons.arrow_back_ios,size: 20,color:Color(0xFF012340),)),
+        padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+        onPressed: (){
+          Navigator.pop(context);
+        }, icon:Icon(Icons.arrow_back_ios,size: SizedConfig.size17,color: Color(0xFF012340),)),
         backgroundColor: Colors.transparent,
         elevation: 0,
         ),
@@ -37,7 +38,7 @@ class _DiagnosisDetailState extends State<DiagnosisDetail> {
             Wrap(
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
-                SvgPicture.asset('assets/images/species.svg',height: 24, width: 24,fit: BoxFit.cover),
+                SvgPicture.asset('assets/images/species.svg',height: SizedConfig.size13, width: SizedConfig.size13,fit: BoxFit.cover),
                 SizedBox(width: 5,),
                 Text( widget.trlang == true ? "TÜRLER" : "SPECIES",style: Theme.of(context).textTheme.labelLarge),
               ],
@@ -48,7 +49,7 @@ class _DiagnosisDetailState extends State<DiagnosisDetail> {
             Wrap(
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
-                SvgPicture.asset('assets/images/desc.svg',height: 20, width: 20,fit: BoxFit.cover),
+                SvgPicture.asset('assets/images/desc.svg',height: SizedConfig.size13, width: SizedConfig.size13,fit: BoxFit.cover),
                 SizedBox(width: 5,),
                 Text(widget.trlang == true ? "AÇIKLAMA" :"DESCRIPTION",style: Theme.of(context).textTheme.labelLarge),
               ],
@@ -59,7 +60,7 @@ class _DiagnosisDetailState extends State<DiagnosisDetail> {
             Wrap(
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
-                SvgPicture.asset('assets/images/signs.svg',height: 20, width: 20,fit: BoxFit.cover),
+                SvgPicture.asset('assets/images/signs.svg',height: SizedConfig.size13, width: SizedConfig.size13,fit: BoxFit.cover),
                 SizedBox(width: 5,),
                 Text(widget.trlang == true ? "BELİRTİLER" : "SIGNS",style: Theme.of(context).textTheme.labelLarge),
               ],
