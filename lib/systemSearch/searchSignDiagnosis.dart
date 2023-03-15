@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:consultant/search/searchList.dart';
 import 'package:consultant/systemSearch/systemSearch.dart';
 import 'package:consultant/widget/button.dart';
@@ -178,8 +180,7 @@ class _SearchSignDiagnosisState extends State<SearchSignDiagnosis> {
                   iconDisabledColor: Colors.black54,
                   isDense: true,
                   buttonElevation: 0,
-                  dropdownDecoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(10)
-                  ),
+                  dropdownDecoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(10)),
                   buttonHeight: 45,
                   dropdownElevation: 0,
                   scrollbarThickness: 0,
@@ -226,7 +227,7 @@ class _SearchSignDiagnosisState extends State<SearchSignDiagnosis> {
                       ),
                       child: ListTile(
                         title: Text(selectedSystemList[index],style: TextStyle(color: Color(0xFF012340),fontSize:TextConfig.fontSize12)),
-                        trailing: IconButton(icon: Icon(Icons.delete,color: Color(0xFF012340),),onPressed: (){
+                        trailing: IconButton(icon: Icon(Icons.delete,color: Color(0xFF012340),size: sqrt((screenHeight*screenHeight) + (screenWidth* screenWidth))> 960 ? SizedConfig.size10: null),onPressed: (){
                           setState(() {
                               selectedSystemList.remove(selectedSystemList[index]);
                           });

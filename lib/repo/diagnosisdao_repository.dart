@@ -77,7 +77,6 @@ class DiagosisDaoRepository {
         }
       }
     }
-    print(allSpecies.length);
     return allSpecies;
   }
 

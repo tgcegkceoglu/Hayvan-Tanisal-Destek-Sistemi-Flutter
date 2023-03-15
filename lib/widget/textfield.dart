@@ -19,7 +19,6 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
     return Column(
       children: [
         Container(
-          height: SizedConfig.size25,
           padding:EdgeInsets.symmetric(horizontal: 16,),
           decoration: BoxDecoration(
             color: Color(0xFFF5F5F5),
@@ -46,7 +45,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
               fontSize:TextConfig.fontSize12,
             ),
             onChanged: widget.onChanged,
-            textAlignVertical: TextAlignVertical.center,
+            textAlignVertical: widget.icon !=null ? TextAlignVertical.center : null,
             decoration: InputDecoration(
               fillColor: Colors.white,
               border: InputBorder.none,

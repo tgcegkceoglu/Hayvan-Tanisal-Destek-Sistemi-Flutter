@@ -26,10 +26,11 @@ class ContainerWidget extends StatelessWidget {
             offset: Offset(0, 1),
           ),
         ],
-        gradient:LinearGradient(
-        colors: index == null ? [Color(0xFF023059),Color(0xFF012340)] : index!%2==0 ? [Color(0xFF023059),Color(0xFF012340)] :[Color.fromARGB(255, 43, 96, 143),Color.fromARGB(255, 131, 192, 245)],
+        color: index == null ? Color.fromARGB(255, 25, 127, 216) : null,
+        gradient:index !=null ? LinearGradient(
+        colors:index!%2==0 ? [Color(0xFF023059),Color(0xFF012340)] :[Color.fromARGB(255, 110, 160, 204),Color.fromARGB(255, 25, 127, 216)],
         begin: Alignment.topRight,
-        end: Alignment.bottomLeft,),
+        end: Alignment.bottomLeft,):null,
       ),
       child: text != null ? Text(text!,style: Theme.of(context).textTheme.labelSmall)
       :  Padding(

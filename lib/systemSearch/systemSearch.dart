@@ -67,13 +67,14 @@ class _SystemSearchState extends State<SystemSearch> {
           cursorColor: Color(0xFF023059),
           style: TextStyle(
             color: Colors.white,
+            fontSize:TextConfig.fontSize12
           ),
           controller: controller,
           onChanged: _onItemChanged,
           decoration: InputDecoration(
             border: InputBorder.none,
             hintText: widget.trlang == true ? "Belirtileri/Semptomları Arayın..." : "Look for Signs/Symptoms...",
-            hintStyle: TextStyle(color: Colors.white.withOpacity(0.5),fontSize:TextConfig.fontSize14),
+            hintStyle: TextStyle(color: Colors.white.withOpacity(0.5),fontSize:TextConfig.fontSize12),
           ),
         ),
       ),
