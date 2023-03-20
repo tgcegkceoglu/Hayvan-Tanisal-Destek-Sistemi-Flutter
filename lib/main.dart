@@ -1,5 +1,3 @@
-import 'package:consultant/about.dart';
-import 'package:consultant/constants.dart';
 import 'package:consultant/cubit/DiagnosisCubit.dart';
 import 'package:consultant/cubit/systemCubit.dart';
 import 'package:consultant/homepage.dart';
@@ -9,12 +7,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 void main() {
   runApp(const MyApp());
 }
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    TextConfig.init(context);
-    SizedConfig.init(context);
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => DiagnosisCubit()),
@@ -24,11 +21,12 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           textTheme: TextTheme(
-          labelLarge: TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF012340),fontSize:TextConfig.fontSize14),
-          labelMedium:TextStyle(fontWeight: FontWeight.bold, color: Colors.white,fontSize:TextConfig.fontSize12),
-          labelSmall: TextStyle(color: Colors.white,fontSize:TextConfig.fontSize10),
-          headlineLarge: TextStyle(fontSize: TextConfig.fontSize14, fontWeight: FontWeight.bold, color: Color(0xFFF1F7E0))
-          ),
+              titleLarge:
+                  TextStyle(fontWeight: FontWeight.w900, color: Colors.white),
+              titleMedium:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+              bodyMedium: TextStyle(
+                  fontWeight: FontWeight.normal, color: Colors.white)),
         ),
         home: HomePage(),
       ),
